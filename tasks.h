@@ -3,6 +3,7 @@
 #include <vector>
 #include <unordered_map>
 #include <algorithm>
+#include <stack>
 
 class tasks
 {
@@ -15,6 +16,7 @@ public:
     int task_2044_2(std::vector<int> &nums); //2044. Count Number of Maximum Bitwise-OR Subsets
     std::string task_1545_1(int n, int index, std::string &str);
     char task_1545_2(int n, int k);
+    bool task_1106(std::string exp);
 };
 
 #endif // TASKS

@@ -10,7 +10,7 @@ int tasks::task_80(std::vector<int>& nums)
 {
     if (nums.size() < 3) return nums.size();
     int in=2;
-    for (int i=2; i < nums.size();i++)
+    for (unsigned int i=2; i < nums.size();i++)
     {
         if(nums[i]!=nums[in-2])
         {
@@ -51,7 +51,7 @@ void tasks::task_2044_1(const std::vector<int> &nums, int index, int current_num
     {
         count++;
     }
-    for (int i = index; i < nums.size(); ++i)
+    for (unsigned int i = index; i < nums.size(); ++i)
     {
         task_2044_1(nums, i + 1, current_num | nums[i], max_num, count);
     }
@@ -101,4 +101,56 @@ char tasks::task_1545_2(int n, int k)
 }
 
 
+/*
+    char findKthBit(int n, int k) {
+    if (n == 1)
+    {
+        return '0';
+    }
+    int len = (1 << n) - 1; //длинна равна, побитово сдвинутая единица на значение "n" 1<<3 1=>1000
+    int mid = len / 2 + 1; // лен/2+1 вычисляем середину
+    if (k == mid) //если к= середине, то возвращаем 1
+    {
+        return '1';
+    }
+    if (k < mid) // а пока к меньше середины вызываем функцию
+    {
+        return findKthBit(n - 1, k); // уменьшаем на единицу, и повторяем
+    }
+    char bit = findKthBit(n - 1, len - k + 1);
+    return bit == '0' ? '1' : '0';
+    }*/
 
+//задача состоит в том, чтобы вычислить логическое выражение, представленное в виде строки, которая может содержать логические И/ИЛИ/НЕ/True/False
+//начинаем с вставления в стак символов всех, кроме ',' и '('
+//если у нас пришел оператор &/|/!/f/t кладем их в стак
+//если ')' то мы должны вычислить значение
+bool tasks::task_1106(std::string exp)
+{
+    std::stack<char> st;
+    char temp = ' ', op = ' ';
+    for (char ch : exp)
+    { //повторяем до конца строки, если в верхней части стека есть T, возвращаем значение true иначе false;
+        if (ch == '(' || ch == ',') continue;
+        if (ch == 't' || ch == 'f' || ch == '!' || ch == '&' || ch == '|')
+            st.push(ch);  //заполнение стека идет тут
+        else if (ch == ')')  //встретили скобку, начали обрабатывать выражения с конца пока не дошли до операторов
+        {
+            bool hasTrue = false, hasFalse = false;
+            while ((!st.empty()) && (st.top()!='!') && (st.top()!='&') && (st.top()!='|'))  //как только вышли из цикла, в верхней части стека должен быть один из операторов
+            {
+                char val = st.top(); //приравниваем значение к последнему значению стека
+                st.pop(); //удаляем символ из стека
+                if (val == 't') hasTrue = true; //
+                if (val == 'f') hasFalse = true;
+            }
+
+            if (!st.empty())  op=st.top(), st.pop();
+            if (op == '!') temp = hasTrue ? 'f' : 't'; // если не, то меняем
+            else if (op == '&') temp = (hasTrue && !hasFalse) ? 't' : 'f'; // если и, то проверяем
+            else if (op == '|') temp = hasTrue ? 't' : 'f';
+            st.push(temp);
+        }
+    }
+    return st.top() == 't';
+}
