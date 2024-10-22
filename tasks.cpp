@@ -154,3 +154,163 @@ bool tasks::task_1106(std::string exp)
     }
     return st.top() == 't';
 }
+// Задача: разделить строку на максимальное количество уникальных подстрок
+// решение, нужно начиная с 1(старт) символа, до последнего символва добавляем все возможные варианты в унордеред сет
+// и рекурсивно начинаем проверять следующую часть строки, возвращая инт и сравнивая, стало ли больше
+// максимальное количество уникальных подстрок= макссплитс
+//после подсчета, мы удаляем подстроку из набора, чтобы можно было изучить другие варианты.
+//и когда старт = длинне строки, значит мы долшли до конца строки и не можем ее больше разделить, возвращаем 0
+// сложность О(N*2^N) время O(N)
+int tasks::task_1593_1(int start, const std::string &s, std::unordered_set<std::string> &seen)
+{
+    if (start == s.size())
+    {
+        return 0;
+    }
+    int maxSplits = 0;
+    for (int end = start + 1; end <= s.size(); ++end) {
+        std::string substring = s.substr(start, end - start);
+        if (seen.find(substring) == seen.end()) {
+            seen.insert(substring);
+            maxSplits = std::max(maxSplits, 1 + task_1593_1(end, s, seen));
+            seen.erase(substring);
+        }
+    }
+    return maxSplits;
+}
+int tasks::task_1593_2(std::string s)
+{
+    std::unordered_set<std::string> seen;
+    return task_1593_1(0, s, seen);
+}
+// необходимо вернуть наиболее часто встречающийся элемент в дереве
+//левое поддерево узла содержит только узлы с ключами, меньшими или равными ключу узла
+// правое поддерево узла содержит только узлы с ключами
+std::vector<int> tasks::task_501_1(TreeNode *root)
+{
+    if(!root) return result;
+
+    task_501_1(root->left); //рекурсивно вызываем функцию,  передаем левую ветку
+
+    if(prev == root->val) counter++; // если прев,= значению, увеличиваем счетчик
+    else counter = 1;
+
+
+
+    if(counter == maxi){    //если счетчик = максимальному, в вектор вставляем текущее значение
+        result.push_back(root->val);
+    }
+
+    else if(counter > maxi){ // если счетчик больше максимального, то макси делаем счетчиком
+        maxi = std::max(maxi, counter); // а результат приравниваем к текущему значению дерева
+        result = {root->val};
+    }
+
+    prev = root->val; //прев делаем равным текущему значению
+    task_501_1(root->right); // рекурсивно вызываем функцию, в качестве аргумента передаем правую ветку
+
+
+}
+
+std::vector<int> tasks::task_501_2(TreeNode *root)
+{
+    task_501_1(root);
+    return result;// возвращаем значение вектора
+}
+
+// необходимо вычислить сумму значений узлов, на каждом уровне двоичного дерева, а затем найти к-ую по величине сумму,
+//двоичное дерево можно обрабатывать уровень за уровнем с помощью поиска в ширину, BFS, потом сортируем в конце и выдаем к-ое по величине значение
+// сложность О(N)-BFS сортировка сумм уровней О(LogN) итого O(N+LogN)
+// временная сложность O(N)
+long long tasks::task_2583(TreeNode *root, int k)
+{
+    std::vector<long long> res;      // Для хранения суммы каждого уровня
+    std::queue<TreeNode*> q;         // Очередь для обхода по уровням (BFS)
+
+    q.push(root);               // Запустить BFS с корневого узла   //*мои:вот тут мы поместили начало, в очереди, только корень
+    while (!q.empty()) {
+        int n = q.size();       // Количество узлов на текущем уровне
+        long long sum = 0;      // Сумма значений узлов на текущем уровне
+
+        // Обработать все узлы на текущем уровне
+        while (n--) {
+            TreeNode* node = q.front(); q.pop();   // Получить передний узел из очереди и удалить его
+            sum += (long long)node->val;           // Добавить значение узла к сумме уровня //*мои:посчитали сумму
+
+            // Поместить левые и правые дочерние элементы узла в очередь (если они существуют) //*мои:вставили в очередь, левую ветку и правую
+            if (node->left) q.push(node->left);
+            if (node->right) q.push(node->right);
+        } //*мои:и теперь у нас в очереди 2 элемента, while(n--) 2 раза,
+        res.push_back(sum);     // Сохранить сумму текущего уровня //*мои: записываем в рез сумму корня и очередь уже не пустая, в ней 2 ветки
+    }
+    // Если k больше количества уровней, вернуть -1
+    if (k > res.size()) return -1;
+
+    // Сортировать суммы уровней в порядке убывания
+    sort(res.begin(), res.end(), std::greater<long long>());
+
+    // Возвращает k-ю наибольшую сумму уровня (k-1 из-за индексации, начинающейся с 0)
+    return res[k-1];
+}
+
+// поиск и подсчет звездочек между палочками |
+int tasks::task_2315(std::string &s)
+{
+    int start=0;
+    int count=0;
+    int end=0;
+    bool find=true;
+    for (int i=0;i<s.length(); i++)
+    {
+        if (s[i]=='|' && find)
+        {
+            start=i;
+            find=false;
+        } else
+            if (s[i]=='|')
+            {
+                end=i;
+                s.erase(start, end-start+1);
+                i=0;
+                find=true;
+            }
+    }
+    for (auto i : s)
+    {
+        if(i=='*') count++;
+    }
+    return count;
+}
+//на входе вектор, нужно взять суммы слева и справа, а потом по модулю посчитать их разницу, вывести результаты в вектор
+std::vector<int> tasks::task_2574(std::vector<int> &nums)
+{
+    std::vector<int> for_ret;
+    int temp=0;
+    for (int i=0;i<nums.size();i++)
+    {
+        for_ret.push_back(temp);
+        temp+=nums[i];
+    }
+    temp=0;
+    for (int i=nums.size()-1;i>=0;i--)
+    {
+        for_ret[i]=std::abs(for_ret[i]-temp);
+        temp+=nums[i];
+    }
+    return for_ret;
+}
+// на входе вектор, нужно все элементы по очереди, приравнять к минимальному
+int tasks::task_1887(std::vector<int> &nums)
+{
+    sort(nums.begin(),nums.end());
+    int count=0;
+    for(int i=nums.size()-1;i>=1;i--){
+        if(nums[0]==nums[i]) break;
+        else if(nums[i]==nums[i-1])continue;
+        else
+        {
+            count+=nums.size()-i;
+        }
+    }
+    return count;
+}
