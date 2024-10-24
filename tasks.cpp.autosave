@@ -357,7 +357,7 @@ TreeNode *tasks::task_2641(TreeNode *root)
 //Левое поддерево первого дерева эквивалентно правому поддереву второго дерева, а правое поддерево первого дерева эквивалентно левому поддереву второго дерева.
 bool tasks::task_951(TreeNode *root1, TreeNode *root2)
 {
-    if (root1 == NULL || root2 == NULL)
+    if (root1 == NULL || root2 == NULL) //если только одно дерево нулл,
                 return root1 == root2;
             if (root1->val != root2->val)
                 return false;

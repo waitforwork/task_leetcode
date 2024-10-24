@@ -37,6 +37,8 @@ public:
     int task_2315(std::string &s);                                                                                  //2315. парсинг строки
     std::vector<int> task_2574(std::vector<int>& nums);                                                             //2574. разность сумм слева и справа
     int task_1887(std::vector<int>& nums);                                                                          //1887. выравнивание вектора, все элементы д.б. равны
+    TreeNode* task_2641(TreeNode* root);                                                                            //Бинарное дерево
+    bool task_951(TreeNode* root1, TreeNode* root2);                                                                //Бинарное дерево
 private:
     std::vector<int> result; //501
         int prev = 0;        //501
