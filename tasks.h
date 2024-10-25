@@ -37,8 +37,14 @@ public:
     int task_2315(std::string &s);                                                                                  //2315. парсинг строки
     std::vector<int> task_2574(std::vector<int>& nums);                                                             //2574. разность сумм слева и справа
     int task_1887(std::vector<int>& nums);                                                                          //1887. выравнивание вектора, все элементы д.б. равны
-    TreeNode* task_2641(TreeNode* root);                                                                            //Бинарное дерево
-    bool task_951(TreeNode* root1, TreeNode* root2);                                                                //Бинарное дерево
+    TreeNode* task_2641(TreeNode* root);                                                                            //2641. Бинарное дерево
+    bool task_951(TreeNode* root1, TreeNode* root2);                                                                //951. Бинарное дерево
+    int task_1406_1(int p,int i,int n,std::vector<int> &piles,std::vector<std::vector<int>> &dp);                   //1406. вектор векторов
+    std::string task_1406_2(std::vector<int>& stones);                                                              //1406. вектор векторов
+    std::vector<std::string> task_1233(std::vector<std::string>& folder);                                           //1233. парсинг в строке
+    int task_910(std::vector<int>& nums, int k);                                                                    //910. математика
+    double task_1344(int hour, int minutes);                                                                        //1344. математика
+    std::string task_1374(int n);                                                                                   //1374. строки
 private:
     std::vector<int> result; //501
         int prev = 0;        //501

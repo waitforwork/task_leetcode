@@ -357,12 +357,112 @@ TreeNode *tasks::task_2641(TreeNode *root)
 //Левое поддерево первого дерева эквивалентно правому поддереву второго дерева, а правое поддерево первого дерева эквивалентно левому поддереву второго дерева.
 bool tasks::task_951(TreeNode *root1, TreeNode *root2)
 {
-    if (root1 == NULL || root2 == NULL)
-                return root1 == root2;
-            if (root1->val != root2->val)
-                return false;
-            return (task_951(root1->left, root2->left) &&
-                    task_951(root1->right, root2->right)) ||
-                    task_951(root1->left, root2->right) &&
-                    task_951(root1->right, root2->left);
+    if (root1 == NULL || root2 == NULL) //если только одно дерево нулл, то они не могут быть эквивалентны
+        return root1 == root2;
+    if (root1->val != root2->val) //если значение корня рут1, не равно значению корня рут2, то возвращаем false
+        return false; //в противном случае рекурсивно повторяем операцию сравнения для каждой ветки
+    return ((task_951(root1->left, root2->left) && //левая ветка у обоих деревьев и
+             task_951(root1->right, root2->right)) || //правая ветка у обоих деревьев или
+            task_951(root1->left, root2->right) && //левая у 1 и правая у 2 и
+            task_951(root1->right, root2->left)); //правая у 1 и левая у 2.
+}
+// игра в камни, необходимо вытаскивать камни двум людям, и вывести победителя
+int tasks::task_1406_1(int p, int i, int n, std::vector<int> &piles, std::vector<std::vector<int> > &dp)
+{
+    if(i>=n) //если на вход пришел пустой вектор, то возвращаем ноль
+        return 0;
+    if(dp[p][i]!=-1)
+        return dp[p][i];
+    int mi=INT_MAX,ma=INT_MIN;
+    int sum=0;
+    //игроки могут взять от 1 до 3 камней
+    for(int x=1;x<=std::min(3,n-i);x++)
+    {
+        sum+=piles[i+x-1];
+        //если ход алисы, то она попытается набрать максимум очков
+        if(p==0)
+            ma=std::max(ma,sum+task_1406_1(1,i+x,n,piles,dp));
+        //если ход боба, то он попытается набрать максимум и сделать так, чтобы алиса набрала минимум
+        else
+            mi=std::min(mi,task_1406_1(0,i+x,n,piles,dp));
+    }
+    if(p==0)
+        return dp[p][i]=ma;
+    return dp[p][i]=mi;
+
+}
+
+std::string tasks::task_1406_2(std::vector<int> &stones)
+{
+    {
+        int tot=0; //всего очков
+        for(auto x:stones)
+            tot+=x;
+        int n=stones.size(); // количество камней
+        std::vector<std::vector<int>> dp(2,std::vector<int>(n+1,-1)); //создаем двумерный вектор, в котором будет 2 строки, и n+1 столбцов и каждый будет инициирован -1
+        int alice=task_1406_1(0,0,n,stones,dp); // подсчитываем алисины очки
+        int bob=tot-alice; // счет боба будет общее количество, минус алисины очки
+        if(bob==alice)//ничья
+            return "Tie";
+        if(bob>alice)
+            return "Bob";//победа боба
+        return "Alice"; // победа алисы
+    }
+}
+// необходимо убрать подкаталоги, сначала выясним какие папки корни, а потом поищем подпапки
+std::vector<std::string> tasks::task_1233(std::vector<std::string> &folder)
+{
+    // Сортируем папки лексикографически, чтобы родительские папки располагались перед подпапками
+    std::sort(folder.begin(), folder.end());
+    // Инициализируем вектор результата с первой папкой
+    std::vector<std::string> ans;
+    ans.push_back(folder[0]);
+    // Проходим по оставшимся папкам, начиная с индекса 1
+    for(int i = 1; i < folder.size(); i++) {
+        // Получить последний добавленный путь к папке и добавить завершающий слеш
+        // Это помогает сравнить, является ли текущая папка подпапкой
+        std::string lastFolder = ans.back();
+        lastFolder.push_back('/');
+        // Сравнивает текущую папку с последней добавленной папкой
+        // compare(0, lastFolder.size(), lastFolder) проверяет, начинается ли папка[i] с lastFolder
+        // Если она не начинается с lastFolder (возвращает != 0), то это не подпапка
+        if(folder[i].compare(0, lastFolder.size(), lastFolder) != 0) {
+            // Если не подпапка, добавить в результат
+            ans.push_back(folder[i]);
+        }
+    }
+    return ans;
+}
+//необходимо найти минимальное и максимальные значения nums[i] + k or nums[i] - k и вывести минимальное значение из чисел нового массива
+int tasks::task_910(std::vector<int> &nums, int k)
+{
+    int n=nums.size();
+    std::sort(nums.begin(), nums.end());
+    int diff=nums[n-1]-nums[0];
+    for(int i=1; i<n; i++){
+        int mn=std::min(nums[0]+k, nums[i]-k);
+        int mx=std::max(nums[i-1]+k, nums[n-1]-k);
+        diff=std::min(diff, mx-mn);
+    }
+    return diff;
+}
+// определение угла между часовой и минутной стрелкой
+double tasks::task_1344(int hour, int minutes)
+{
+    double angle_between = std::abs((60*hour+minutes)*0.5-minutes*6);
+    return angle_between>180 ? 360 - angle_between : angle_between;
+}
+//необходимо вывести строку, в которую случайно вставить буквы, нечетное количество
+std::string tasks::task_1374(int n)
+{
+    std::string for_ret;
+    if (n%2!=0)
+        while(n--) for_ret.push_back('a');
+    if(n%2==0)
+    {
+        n=n-1;
+        while(n--) for_ret.push_back('b');
+        for_ret.push_back('a');
+    }
+    return for_ret;
 }
