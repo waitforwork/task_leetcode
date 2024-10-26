@@ -45,11 +45,14 @@ public:
     int task_910(std::vector<int>& nums, int k);                                                                    //910. математика
     double task_1344(int hour, int minutes);                                                                        //1344. математика
     std::string task_1374(int n);                                                                                   //1374. строки
+    std::vector<int> task_2458_1(TreeNode * root, std::vector<int>&queries);                                        //2458. бинарное дерево и вектор
+    int task_2458_2(TreeNode* root, int level);                                                                     //2458. бинарное дерево и вектор
 private:
     std::vector<int> result; //501
         int prev = 0;        //501
         int counter = 0;     //501
         int maxi = 0;        //501
+        std::vector<int> depth, levelArr, max1, max2;   //2458
 };
 
 #endif // TASKS

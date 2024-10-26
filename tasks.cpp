@@ -466,3 +466,37 @@ std::string tasks::task_1374(int n)
     }
     return for_ret;
 }
+// необходимо отрезать по очереди у дерева, ветку, которая начинается с значения вектора, после этого найти максимальную длинну
+std::vector<int> tasks::task_2458_1(TreeNode *root, std::vector<int> &queries)
+{
+    depth.resize(100001, 0);    //размер вектора глубины
+    levelArr.resize(100001, 0); //размер вектора уровней
+    max1.resize(100001, 0);     //размер вектора максимальных значений 1
+    max2.resize(100001, 0);     //размер вектора максимальных значений 2
+    // вычисление глубины и максимальной глубины каждого уровня
+    task_2458_2(root, 0);
+    // обработка каждого запроса
+    for (int i = 0; i < queries.size(); i++) //для каждого значения из вектора отрезаем ветку, и смотрим глубины
+    {
+        int q = queries[i];
+        int level = levelArr[q];
+        queries[i] = (max1[level] == depth[q] ? max2[level] : max1[level]) + level - 1;//приравниваем вектору значение глубины с отрезанной веткой
+    }
+    return queries;
+}
+
+int tasks::task_2458_2(TreeNode *root, int level)
+{
+    if (!root) return 0;
+    levelArr[root->val] = level;
+    depth[root->val] = 1 + std::max(task_2458_2(root->left, level + 1), task_2458_2(root->right, level + 1));
+    if (max1[level] < depth[root->val])  //если максимальный уровень 1 меньше глубины,
+    {
+        max2[level] = max1[level];
+        max1[level] = depth[root->val];
+    } else if (max2[level] < depth[root->val])
+    {
+        max2[level] = depth[root->val];
+    }
+    return depth[root->val];
+}
