@@ -500,3 +500,20 @@ int tasks::task_2458_2(TreeNode *root, int level)
     }
     return depth[root->val];
 }
+// игра, в которой дан вектор характеристик, атаки и защиты, нужно найти того, кто слабее
+int tasks::task_1996(std::vector<std::vector<int> > &properties)
+{
+    //для начала отсортируем характеристики
+    std::sort(properties.begin(),properties.end(), [](const auto& a, const auto& b)
+    {
+        return a[0] == b[0] ? a[1] < b[1] : a[0] > b[0]; //если а=б(нулевые), то, если а(1)<б(1), то ввозращаем труе, в противном случае фолс
+    });
+    int out{}, topDef{};
+
+    for(const auto& p : properties)
+    {
+        if (p[1] < topDef){ ++out;}
+        else { topDef = p[1];}
+    }
+    return out;
+}
