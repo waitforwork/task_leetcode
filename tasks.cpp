@@ -517,3 +517,33 @@ int tasks::task_1996(std::vector<std::vector<int> > &properties)
     }
     return out;
 }
+// необходимо подсчитать сколько квадратных матриц из единичек есть в матрице
+int tasks::task_1277(std::vector<std::vector<int> > &matrix)
+{
+    int n = matrix.size();    // количество строк
+    int m = matrix[0].size(); // количество столбцов
+    std::vector<std::vector<int>> dp(n, std::vector<int>(m, 0));    // создаем матрицу дп, таких же размеров
+    int count = 0;
+    for (int i = 0; i < n; i++)  //квадрт размером 1на1 столбцы
+    {
+        dp[i][0] = matrix[i][0];
+        count += dp[i][0];
+    }
+    for (int j = 1; j < m; j++)  //квадрат размером 1на1 строки
+    {
+        dp[0][j] = matrix[0][j];
+        count += dp[0][j];
+    }
+    for(int i = 1; i < n; i++)
+    {
+        for(int j = 1; j < m; j++)
+        {
+            if(matrix[i][j] == 1)  //только если значение равно 1
+            {
+                dp[i][j] = 1 + std::min({dp[i][j-1], dp[i-1][j], dp[i-1][j-1]}); //левая, верхняя и диагональная ячейки единицы
+            }
+            count += dp[i][j];
+        }
+    }
+    return count;
+}

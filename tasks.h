@@ -49,6 +49,7 @@ public:
     std::vector<int> task_2458_1(TreeNode * root, std::vector<int>&queries);                                        //2458. бинарное дерево и вектор
     int task_2458_2(TreeNode* root, int level);                                                                     //2458. бинарное дерево и вектор
     int task_1996(std::vector<std::vector<int>>& properties);                                                       //1996. вектор векторов
+    int task_1277(std::vector<std::vector<int>>& matrix);                                                           //1277. вектор векторов
 private:
     std::vector<int> result; //501
         int prev = 0;        //501
