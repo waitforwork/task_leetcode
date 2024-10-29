@@ -7,6 +7,7 @@
 #include <unordered_set>
 #include <queue>
 #include <map>
+#include <cmath>
 
 struct TreeNode //501,2583
 {
@@ -50,6 +51,8 @@ public:
     int task_2458_2(TreeNode* root, int level);                                                                     //2458. бинарное дерево и вектор
     int task_1996(std::vector<std::vector<int>>& properties);                                                       //1996. вектор векторов
     int task_1277(std::vector<std::vector<int>>& matrix);                                                           //1277. вектор векторов
+    int task_2501(std::vector<int>& nums);                                                                          //2501.вектор в мапу
+    int task_2684(std::vector<std::vector<int>>& grid);                                                             //2684. вектор векторов
 private:
     std::vector<int> result; //501
         int prev = 0;        //501
