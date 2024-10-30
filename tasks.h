@@ -53,6 +53,7 @@ public:
     int task_1277(std::vector<std::vector<int>>& matrix);                                                           //1277. вектор векторов
     int task_2501(std::vector<int>& nums);                                                                          //2501.вектор в мапу
     int task_2684(std::vector<std::vector<int>>& grid);                                                             //2684. вектор векторов
+    int task_1671(std::vector<int>& nums);                                                                          //1671. массивы
 private:
     std::vector<int> result; //501
         int prev = 0;        //501

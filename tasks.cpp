@@ -564,8 +564,65 @@ int tasks::task_2501(std::vector<int> &nums)
     }
     return res;
 }
-
+//игра, необходимо определить максимальное количество ходов, чтобы дойти до конца
 int tasks::task_2684(std::vector<std::vector<int> > &grid)
 {
+    int m = grid.size(), n = grid[0].size(); //количество строк и столбцов
+    std::vector<std::vector<int>> dp(m, std::vector<int>(n, 0)); //вектор из м строк векторов, длинной н и заполненную нулями MxN=0
+    int maxMoves = 0;
 
+    for (int col = n - 2; col >= 0; --col)  //начинаем с конца двигаться(предпоследний столбец)
+    {
+        for (int row = 0; row < m; ++row)  //строка верхняя, движемся вниз
+        {
+            if (row > 0 && grid[row][col] < grid[row - 1][col + 1])  //если строка больше нуля и значение в ячейке меньше значения в ячейке ниже и правее
+            {
+                dp[row][col] = std::max(dp[row][col], dp[row - 1][col + 1] + 1); //то мы присваиваем значению дп, максимум из двух +1
+            }
+            if (grid[row][col] < grid[row][col + 1])  //меньше знаяения в ячейке в той же строке и правее
+            {
+                dp[row][col] = std::max(dp[row][col], dp[row][col + 1] + 1); // снова увеличиваем
+            }
+            if (row < m - 1 && grid[row][col] < grid[row + 1][col + 1])  //если значение строки меньше длинны -1 и меньше значения сверху и правее
+            {
+                dp[row][col] = std::max(dp[row][col], dp[row + 1][col + 1] + 1);
+            }
+        }
+    }
+
+    for (int row = 0; row < m; ++row) {
+        maxMoves = std::max(maxMoves, dp[row][0]); //проходим по массиву и находим максимум
+    }
+    return maxMoves;
+}
+//необходимо понять, сколько надо удалить значений из вектора, чтобы получилась горка
+int tasks::task_1671(std::vector<int> &nums)
+{
+    std::vector<int> leftDP(nums.size(), 1), rightDP(nums.size(), 1); //создаем два вектора, слева и справа, одинаковой длинны, заполненные единицами
+    // сначала слева
+    for (int i = 0; i < nums.size(); ++i) {
+        for (int j = 0; j < i; ++j) {
+            if (nums[i] > nums[j]) {
+                leftDP[i] = std::max(leftDP[i], leftDP[j] + 1); //если некст элемент больше предыдущего, то мы в вектор левых значений добавляем значение слева+1
+            }
+        }
+    }
+    // теперь справа движемся справа к началу
+    for (int i = nums.size() - 1; i >= 0; --i) {
+        for (int j = nums.size() - 1; j > i; --j) {
+            if (nums[i] > nums[j]) { //если слева, больше чем справа, значит добавляем значение +1
+                rightDP[i] = std::max(rightDP[i], rightDP[j] + 1);
+            }
+        }
+    }
+    // находим самую большую сумму, это и будет большая горка
+    int ans = 0;
+    for (int i = 0; i < nums.size(); ++i) {
+        // проверяем, что есть и левая часть горы и правая
+        if (leftDP[i] != 1 && rightDP[i] != 1) {
+            ans = std::max(ans, leftDP[i] + rightDP[i]);
+        }
+    }
+    // возвращаем количество чисел, которое нужно убрать, чтобы получилась гора
+    return nums.size() - ans + 1;
 }
