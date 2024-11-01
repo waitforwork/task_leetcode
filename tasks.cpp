@@ -626,3 +626,104 @@ int tasks::task_1671(std::vector<int> &nums)
     // возвращаем количество чисел, которое нужно убрать, чтобы получилась гора
     return nums.size() - ans + 1;
 }
+//днеобходимо определить, сколько нужно пройти расстояния по клеткам, от единички до ближайшего нуля, дана матрица нулей и единиц
+std::vector<std::vector<int> > tasks::task_542(std::vector<std::vector<int> > &mat)
+{
+    std::vector<std::vector<int>>ans(mat.size(),std::vector<int>(mat[0].size()));
+    std::vector<std::vector<bool>>visited(mat.size(),std::vector<bool>(mat[0].size(),false));
+    std::queue<std::pair<std::pair<int,int>,int>>q;
+    for(int i=0; i<mat.size();i++){
+        for(int j=0;j<mat[i].size();j++){
+            if(mat[i][j]==0){
+                q.push({{i,j},0});
+                visited[i][j]=true;
+            }
+        }
+    }
+    while(!q.empty()){
+        int a = q.front().first.first;
+        int b = q.front().first.second;
+        int dis = q.front().second;
+        q.pop();
+        ans[a][b]=dis;
+        if(a!=0 && !visited[a-1][b]){
+            visited[a-1][b]=true;
+            q.push({{a-1,b},dis+1});
+        }
+        if(a!=mat.size()-1 && !visited[a+1][b]){
+            visited[a+1][b]=true;
+            q.push({{a+1,b},dis+1});
+        }
+        if(b!=0 && !visited[a][b-1]){
+            visited[a][b-1]=true;
+            q.push({{a,b-1},dis+1});
+        }
+        if(b!=mat[0].size()-1 && !visited[a][b+1]){
+            visited[a][b+1]=true;
+            q.push({{a,b+1},dis+1});
+        }
+    }
+    return ans;
+}
+//необходимо роботов доставить до фабрик
+long long tasks::task_2463(std::vector<int> &robot, std::vector<std::vector<int> > &factory)
+{
+    // сначала отсортируем фабрики и роботов
+    sort(robot.begin(), robot.end());
+    sort(factory.begin(), factory.end());
+
+    int m = robot.size(), n = factory.size();
+    // dp[i][j]: минимальное общее расстояние для роботов[i:] использующих фабрики[j:]
+    std::vector<std::vector<long long>> dp(m + 1, std::vector<long long>(n + 1));
+    // если нет доступных заводов, то расстояние равно бесконечность
+    for (int i = 0; i < m; i++) {
+        dp[i][n] = LLONG_MAX;
+    }
+    // обрабатываем фабрики с права, на лево
+    for (int j = n - 1; j >= 0; j--) {
+        // отслеживаем совокупное расстояние от текущего завода до роботов
+        long long prefix = 0;
+        // Deque хранит пары, индекс робота и минимальное расстояние
+        std::deque<std::pair<int, long long>> qq;
+        // базовые вариант инициация
+        qq.push_back({m, 0});
+
+        // обрабатываем робота справа на лево
+        for (int i = m - 1; i >= 0; i--) {
+            // добавляем расстояние от текущего робота до текущего завода
+            prefix += abs(robot[i] - factory[j][0]);
+
+            // удаляем записи, которые превышают возможности завода
+            while (!qq.empty() && qq.front().first > i + factory[j][1]) {
+                qq.pop_front();
+            }
+
+            // поддерживаем монотонность дека
+            while (!qq.empty() && qq.back().second >= dp[i][j + 1] - prefix) {
+                qq.pop_back();
+            }
+
+            // добавляем текущее расстояние в дек
+            qq.push_back({i, dp[i][j + 1] - prefix});
+            // подсчитываем минимальное расстояние для текущего состояния
+            dp[i][j] = qq.front().second + prefix;
+        }
+    }
+
+    // возвращаем минимальное общее расстояние начиная с первого робота и первой фаьрики
+    return dp[0][0];
+}
+
+std::string tasks::task_1957(std::string s)
+{
+    if(s.length()<3)
+    {
+        return s;
+    }
+    int j = 2;
+    for (int i = 2; i < s.size(); ++i)
+        if (s[i] != s[j - 1] || s[i] != s[j - 2])
+            s[j++] = s[i];
+    s.resize(j);
+    return s;
+}

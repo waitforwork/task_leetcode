@@ -54,6 +54,9 @@ public:
     int task_2501(std::vector<int>& nums);                                                                          //2501.вектор в мапу
     int task_2684(std::vector<std::vector<int>>& grid);                                                             //2684. вектор векторов
     int task_1671(std::vector<int>& nums);                                                                          //1671. массивы
+    std::vector<std::vector<int>> task_542(std::vector<std::vector<int>>& mat);                                     //542 дерево, массивы
+    long long task_2463(std::vector<int>& robot, std::vector<std::vector<int>>& factory);                           //2463. вектор векторов
+    std::string task_1957(std::string s);                                                                           //1957 строки, удаление повторов
 private:
     std::vector<int> result; //501
         int prev = 0;        //501

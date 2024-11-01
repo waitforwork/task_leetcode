@@ -5,26 +5,25 @@
 #include <vector>
 #include <cmath>
 
-class Solution {
-public:
-    std::vector<std::vector<int>> updateMatrix(std::vector<std::vector<int>>& mat)
+std::string makeFancyString(std::string s)
+{
+    if(s.length()<3)
     {
-
+        return s;
     }
-};
+    int j = 2;
+    for (int i = 2; i < s.size(); ++i)
+        if (s[i] != s[j - 1] || s[i] != s[j - 2])
+            s[j++] = s[i];
+    s.resize(j);
+    return s;
+}
 
 int main()
 {
-    std::vector<std::vector<int>> my_vec={{0,0,0},{0,1,0},{0,0,0}};
-    std::unordered_map<int,int> map;
-    for (int i=0;i<my_vec[0].size();i++)
-    {
-        for (int j=0;j<my_vec.size();j++)
-        {
-            if(my_vec[i][j]==1) std::cout << i << " " << j << std::endl;
-        }
-    }
-    Solution sol;
-    sol.updateMatrix(my_vec);
-    return 0;
+    std::string s="aaabc";
+    std:: cout << makeFancyString(s) << std::endl;
+    std::cout << "\nC++ is a general-purpose programming language with a bias towards systems programming that\n";
+    std::cout << "  - is a better C\n  - supports data abstraction\n  - supports object-oriented programming\n  - supports generic programming.";
 }
+
