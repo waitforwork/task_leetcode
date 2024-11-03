@@ -57,6 +57,8 @@ public:
     std::vector<std::vector<int>> task_542(std::vector<std::vector<int>>& mat);                                     //542 дерево, массивы
     long long task_2463(std::vector<int>& robot, std::vector<std::vector<int>>& factory);                           //2463. вектор векторов
     std::string task_1957(std::string s);                                                                           //1957 строки, удаление повторов
+    bool task_2490(std::string sentence);                                                                           //2490. строки, поиск
+    bool task_796(std::string s, std::string goal);                                                                 //796. строки, сдвиг и сравнение
 private:
     std::vector<int> result; //501
         int prev = 0;        //501

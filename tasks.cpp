@@ -727,3 +727,32 @@ std::string tasks::task_1957(std::string s)
     s.resize(j);
     return s;
 }
+
+bool tasks::task_2490(std::string sentence)
+{
+    int count=0;
+    bool for_ret=true;
+    for (int i=0;i<sentence.size();i++)
+    {
+        if (sentence[i]==' ')
+        {
+            count++;
+            if (sentence[i-1]!=sentence[i+1]) return false; else
+            {
+                if (sentence[0]!=sentence[sentence.size()-1]) return false; else for_ret=true;
+            }
+        }
+    }
+    if (count==0)
+    {
+        if(sentence[0]!=sentence[sentence.size()-1])
+            return false;
+    }
+    return for_ret;
+}
+
+bool tasks::task_796(std::string s, std::string goal)
+{
+    if (s.size()!=goal.size()) return false;
+    return (s+s).find(goal)<(s+s).size();    //есть индекс, не равен концу строки
+}
