@@ -7,20 +7,30 @@
 
 class Solution {
 public:
-    bool rotateString(std::string s, std::string goal)
+    std::string compressedString(std::string word)
     {
-        bool ans;
-        std::string temp=s+s;
-        if (s.size()!=goal.size()) return false;
-        return temp.find(goal)!=std::string::npos;
+        int count =1;
+        std::string comp="";
+        for (int i=0;i<word.size();i++)
+        {
+            if (count<9 && word[i]==word[i+1])
+            {
+                count++;
+            } else
+            {
+                comp+=std::to_string(count)+word[i];
+                count=1;
+            }
+        }
+        return comp;
     }
 };
 
 int main()
 {
     Solution sol;
-    std::string s="abcde";
+    std::string s="aabcddddddddddde";
     std::string goal="cdeab";
-    std:: cout << sol.rotateString(s,goal) << std::endl;
+    std:: cout << sol.compressedString(s) << std::endl;
 }
 
