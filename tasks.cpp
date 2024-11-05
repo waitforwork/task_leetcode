@@ -756,3 +756,33 @@ bool tasks::task_796(std::string s, std::string goal)
     if (s.size()!=goal.size()) return false;
     return (s+s).find(goal)<(s+s).size();    //есть индекс, не равен концу строки
 }
+
+std::string tasks::task_3163(std::string word)
+{
+    std::string comp = "";
+    int cnt = 1;
+    char ch = word[0];
+    for(int i=1;i<word.size();i++){
+        if(word[i] == ch && cnt < 9)cnt++;
+        else{
+            comp.push_back(cnt+'0');
+            comp.push_back(ch);
+            ch = word[i];
+            cnt = 1;
+        }
+    }
+    comp.push_back(cnt+'0');
+    comp.push_back(ch);
+    return comp;
+}
+
+int tasks::task_2914(std::string s)
+{
+    int count = 0;
+    for (int i = 0; i < s.size() - 1; i += 2) {
+        if (s[i] != s[i + 1]) {
+            count++;
+        }
+    }
+    return count;
+}

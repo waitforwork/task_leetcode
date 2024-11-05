@@ -59,6 +59,8 @@ public:
     std::string task_1957(std::string s);                                                                           //1957 строки, удаление повторов
     bool task_2490(std::string sentence);                                                                           //2490. строки, поиск
     bool task_796(std::string s, std::string goal);                                                                 //796. строки, сдвиг и сравнение
+    std::string task_3163(std::string word);                                                                        //3163. строки, парсинг
+    int task_2914(std::string s);                                                                                   //2914. строки
 private:
     std::vector<int> result; //501
         int prev = 0;        //501
