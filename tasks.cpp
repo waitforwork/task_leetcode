@@ -786,3 +786,32 @@ int tasks::task_2914(std::string s)
     }
     return count;
 }
+
+int popcount(unsigned int n) { //в 20 версии появилось для задачи 2011
+    int count = 0;
+    while (n) {
+        count += n & 1; // Увеличиваем счетчик, если младший бит равен 1
+        n >>= 1;        // Сдвигаем число вправо
+    }
+    return count;
+}
+
+bool tasks::task_3011(std::vector<int> &nums)
+{
+    const uint8_t n = nums.size();
+    uint16_t pmax = 0, cmin = 0, cmax = 0;
+    uint8_t pcnt = 0;
+    for (const uint16_t v : nums) {
+        if (const uint8_t ccnt = popcount(v); pcnt == ccnt) {
+            cmin = std::min(cmin, v);
+            cmax = std::max(cmax, v);
+        } else if (cmin < pmax) {
+            return false;
+        } else {
+            pmax = cmax;
+            cmin = cmax = v;
+            pcnt = ccnt;
+        }
+    }
+    return cmin >= pmax;
+}

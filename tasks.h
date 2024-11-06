@@ -9,6 +9,9 @@
 #include <map>
 #include <cmath>
 
+#include <stdio.h>
+#include <stdint.h>
+
 struct TreeNode //501,2583
 {
     int val;
@@ -61,6 +64,7 @@ public:
     bool task_796(std::string s, std::string goal);                                                                 //796. строки, сдвиг и сравнение
     std::string task_3163(std::string word);                                                                        //3163. строки, парсинг
     int task_2914(std::string s);                                                                                   //2914. строки
+    bool task_3011(std::vector<int>& nums);                                                                         //3011. вектор и сортировка
 private:
     std::vector<int> result; //501
         int prev = 0;        //501
