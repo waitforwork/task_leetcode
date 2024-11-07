@@ -815,3 +815,15 @@ bool tasks::task_3011(std::vector<int> &nums)
     }
     return cmin >= pmax;
 }
+//побитовое сложение с единицей
+int tasks::tssk_2275(std::vector<int> &candidates){
+int n = candidates.size(),ans = 0;
+for(int i=0;i<32;i++){
+    int cnt = 0;
+    for(auto candidate : candidates){
+        if(candidate & (1<<i))cnt++;
+    }
+    ans = std::max(ans,cnt);
+}
+return ans;
+}
