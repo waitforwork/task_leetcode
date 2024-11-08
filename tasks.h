@@ -66,6 +66,7 @@ public:
     int task_2914(std::string s);                                                                                   //2914. строки
     bool task_3011(std::vector<int>& nums);                                                                         //3011. вектор и сортировка
     int tssk_2275(std::vector<int>& candidates);                                                                    //2275. вектор
+    std::vector<int> task_1829(std::vector<int>& nums, int maximumBit);                                             //1829. вектор бинарные операции
 private:
     std::vector<int> result; //501
         int prev = 0;        //501
