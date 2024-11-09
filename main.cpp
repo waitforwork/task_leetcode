@@ -7,17 +7,26 @@
 
 class Solution {
 public:
-    std::vector<int> getMaximumXor(std::vector<int>& nums, int maximumBit) {
-
+    long long minEnd(int n, int x) {
+        long result=x;
+        long remaining=n-1;
+        long position=1;
+        while(remaining)
+        {
+            if (!(x&position))
+            {
+                result|=(remaining&1)*position;
+                remaining>>=1;
+            }
+            position<<=1;
+        }
+        return result;
     }
 };
 
 int main()
 {
-    unsigned int year;
-    std::cin >> year;
-    if (year%400==0) std::cout << "YES";
-    else if (year%100==0) std::cout << "NO";
-    else if (year%4 ==0) std::cout << "YES";
-    else std::cout << "NO";
+    int n=3, x=4;
+    Solution sol;
+    std:: cout << "answer: \n" << sol.minEnd(n,x);
 }

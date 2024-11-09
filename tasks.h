@@ -67,6 +67,7 @@ public:
     bool task_3011(std::vector<int>& nums);                                                                         //3011. вектор и сортировка
     int tssk_2275(std::vector<int>& candidates);                                                                    //2275. вектор
     std::vector<int> task_1829(std::vector<int>& nums, int maximumBit);                                             //1829. вектор бинарные операции
+    long long task_3133(int n, int x);                                                                              //3133. побитовое сложение
 private:
     std::vector<int> result; //501
         int prev = 0;        //501

@@ -839,3 +839,20 @@ std::vector<int> tasks::task_1829(std::vector<int> &nums, int maximumBit)
     }
     return ans;
 }
+
+long long tasks::task_3133(int n, int x)
+{
+    long result=x;
+    long remaining=n-1;
+    long position=1;
+    while(remaining)
+    {
+        if (!(x&position)) // если побитовое и х и позиции не 1
+        {
+            result|=(remaining&1)*position; // то мы с результатом делаем или, возврат и 1, умножаем на позицию
+            remaining>>=1; //сдвигаем направо на 1 регистр
+        }
+        position<<=1; //сдвигаем на лево на 1 регистр
+    }
+    return result;
+}
