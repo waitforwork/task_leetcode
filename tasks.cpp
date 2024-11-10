@@ -856,3 +856,52 @@ long long tasks::task_3133(int n, int x)
     }
     return result;
 }
+
+int tasks::task_921(std::string s)
+{
+    int open_needed = 0;
+    int close_needed = 0;
+    for (char ch : s) {
+        if (ch == '(')
+        {
+            close_needed++;
+        } else if (ch == ')')
+        {
+            if (close_needed > 0)
+            {
+                close_needed--;
+            } else
+            {
+                open_needed++;
+            }
+        }
+    }
+    return open_needed + close_needed;
+}
+
+std::string tasks::task_1768(std::string word1, std::string word2)
+{
+    int length;
+    std::string ans="";
+    std::string temp="";
+    if (word1.length()<word2.length())
+    {
+        length=word1.length();
+        for (int it=word1.length();it<word2.length();it++)
+            temp.push_back(word2[it]);
+    }
+    if (word1.length()>word2.length())
+    {
+        length=word2.length();
+        for (int it=word2.length();it<word1.length();it++)
+            temp.push_back(word1[it]);
+    }
+    for (int it=0;it<length;it++)
+    {
+
+        ans.push_back(word1[it]);
+        ans.push_back(word2[it]);
+    }
+    ans.append(temp);
+    return ans;
+}

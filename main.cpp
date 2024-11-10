@@ -7,26 +7,39 @@
 
 class Solution {
 public:
-    long long minEnd(int n, int x) {
-        long result=x;
-        long remaining=n-1;
-        long position=1;
-        while(remaining)
+    std::string mergeAlternately(std::string word1, std::string word2)
+    {
+        int length;
+        std::string ans="";
+        std::string temp="";
+        if (word1.length()<word2.length())
         {
-            if (!(x&position))
-            {
-                result|=(remaining&1)*position;
-                remaining>>=1;
-            }
-            position<<=1;
+            length=word1.length();
+            for (int it=word1.length();it<word2.length();it++)
+                temp.push_back(word2[it]);
         }
-        return result;
+        if (word1.length()>word2.length())
+        {
+            length=word2.length();
+            for (int it=word2.length();it<word1.length();it++)
+                temp.push_back(word1[it]);
+        }
+        for (int it=0;it<length;it++)
+        {
+
+            ans.push_back(word1[it]);
+            ans.push_back(word2[it]);
+        }
+        ans.append(temp);
+        return ans;
     }
 };
 
 int main()
 {
     int n=3, x=4;
+    std::string a="abcdl";
+    std::string b="ghj";
     Solution sol;
-    std:: cout << "answer: \n" << sol.minEnd(n,x);
+    std:: cout << "answer: \n" << sol.mergeAlternately(a,b);
 }

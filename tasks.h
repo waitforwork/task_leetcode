@@ -68,6 +68,8 @@ public:
     int tssk_2275(std::vector<int>& candidates);                                                                    //2275. вектор
     std::vector<int> task_1829(std::vector<int>& nums, int maximumBit);                                             //1829. вектор бинарные операции
     long long task_3133(int n, int x);                                                                              //3133. побитовое сложение
+    int task_921(std::string s);                                                                                    //921. строки, парсинг
+    std::string task_1768(std::string word1, std::string word2);                                                    //1768. строки, сложение
 private:
     std::vector<int> result; //501
         int prev = 0;        //501
