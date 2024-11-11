@@ -70,12 +70,14 @@ public:
     long long task_3133(int n, int x);                                                                              //3133. побитовое сложение
     int task_921(std::string s);                                                                                    //921. строки, парсинг
     std::string task_1768(std::string word1, std::string word2);                                                    //1768. строки, сложение
+    bool task_2601(std::vector<int>& nums);                                                                         //2601. сортировка массива
 private:
     std::vector<int> result; //501
         int prev = 0;        //501
         int counter = 0;     //501
         int maxi = 0;        //501
         std::vector<int> depth, levelArr, max1, max2;   //2458
+        int getMaxElement(std::vector<int>& nums);//2601
 };
 
 #endif // TASKS
