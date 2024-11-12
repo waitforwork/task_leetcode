@@ -942,7 +942,6 @@ bool tasks::task_2601(std::vector<int> &nums)
     }
     return true;
 }
-
 int tasks::getMaxElement(std::vector<int> &nums)
 {
     int max = -1;
@@ -953,3 +952,30 @@ int tasks::getMaxElement(std::vector<int> &nums)
     }
     return max;
 }
+
+std::vector<int> tasks::maximumBeauty(std::vector<std::vector<int> > &items, std::vector<int> &queries)
+{
+    int maxI = INT_MAX;
+    std::vector<std::vector<int>> res = {{0, 0, maxI}};
+    sort(items.begin(), items.end());
+    for (const auto& item : items) {
+        int price = item[0];
+        int beauty = item[1];
+        if (beauty > res.back()[1]) {
+            res.back()[2] = price;
+            res.push_back({price, beauty, maxI});
+        }    }
+
+    std::vector<int> ans;
+    for (int x : queries) {
+        for (int i = res.size() - 1; i >= 0; i--) {
+            if (res[i][0] <= x) {
+                ans.push_back(res[i][1]);
+                break;
+            }
+        }
+    }
+    return ans;
+}
+
+
