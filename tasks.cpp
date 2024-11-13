@@ -953,7 +953,7 @@ int tasks::getMaxElement(std::vector<int> &nums)
     return max;
 }
 
-std::vector<int> tasks::maximumBeauty(std::vector<std::vector<int> > &items, std::vector<int> &queries)
+std::vector<int> tasks::task_2601(std::vector<std::vector<int> > &items, std::vector<int> &queries)
 {
     int maxI = INT_MAX;
     std::vector<std::vector<int>> res = {{0, 0, maxI}};
@@ -974,6 +974,19 @@ std::vector<int> tasks::maximumBeauty(std::vector<std::vector<int> > &items, std
                 break;
             }
         }
+    }
+    return ans;
+}
+
+long long tasks::task_2563(std::vector<int> &nums, int lower, int upper)
+{
+    long long ans = 0;
+    std::sort(nums.begin(), nums.end());
+
+    for (int i = 0; i < nums.size() - 1; i++) {
+        auto up = upper_bound(nums.begin() + i + 1, nums.end(), upper - nums[i]);
+        auto low = lower_bound(nums.begin() + i + 1, nums.end(), lower - nums[i]);
+        ans += (up - low);
     }
     return ans;
 }

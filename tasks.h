@@ -71,7 +71,8 @@ public:
     int task_921(std::string s);                                                                                    //921. строки, парсинг
     std::string task_1768(std::string word1, std::string word2);                                                    //1768. строки, сложение
     bool task_2601(std::vector<int>& nums);                                                                         //2601. сортировка массива
-    std::vector<int> maximumBeauty(std::vector<std::vector<int>>& items, std::vector<int>& queries);//2070. арифметика, массивы
+    std::vector<int> task_2601(std::vector<std::vector<int>>& items, std::vector<int>& queries);                    //2070. арифметика, массивы
+    long long task_2563(std::vector<int>& nums, int lower, int upper);                                              //2563. арифметика, массив
 private:
     std::vector<int> result; //501
         int prev = 0;        //501
