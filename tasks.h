@@ -73,6 +73,8 @@ public:
     bool task_2601(std::vector<int>& nums);                                                                         //2601. сортировка массива
     std::vector<int> task_2601(std::vector<std::vector<int>>& items, std::vector<int>& queries);                    //2070. арифметика, массивы
     long long task_2563(std::vector<int>& nums, int lower, int upper);                                              //2563. арифметика, массив
+    int task_2064_1(int n, std::vector<int>& quantities);                                                           //2064. арифметика, векторы
+    int task_2064_2(int n,std::vector<int>&quantities,int mid);                                                     //2064. арифметика, векторы
 private:
     std::vector<int> result; //501
         int prev = 0;        //501

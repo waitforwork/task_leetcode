@@ -991,4 +991,31 @@ long long tasks::task_2563(std::vector<int> &nums, int lower, int upper)
     return ans;
 }
 
+int tasks::task_2064_1(int n, std::vector<int> &quantities)
+{
+    int s=1,e=100000,ans=-1;
+    while(s<=e){
+        int mid=s+(e-s)/2;
+        if(task_2064_2(n,quantities,mid)){
+            ans=mid;
+            e=mid-1;
+        }
+        else{
+            s=mid+1;
+        }
+    }
+    return ans;
+}
+
+int tasks::task_2064_2(int n, std::vector<int> &quantities, int mid)
+{
+    int stores=0;
+    for(auto x:quantities){
+        stores+=x/mid;
+        if(x%mid) stores++;
+        if(stores>n) return 0;
+    }
+    return stores<=n;
+}
+
 
