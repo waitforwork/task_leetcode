@@ -1017,5 +1017,38 @@ int tasks::task_2064_2(int n, std::vector<int> &quantities, int mid)
     }
     return stores<=n;
 }
+// Шаг 1: Найти самый длинный неубывающий префикс
+// Если весь массив уже отсортирован
+// Шаг 2: Найти самый длинный неубывающий суффикс
+// Шаг 3: Найти минимальную длину для удаления, сравнив префикс и суффикс
+// Шаг 4: Использовать два указателя, чтобы найти наименьшую среднюю часть для удаления
+int tasks::task_1574(std::vector<int> &arr)
+{
+    int n = arr.size();
+    //1
+    int left = 0;
+    while (left + 1 < n && arr[left] <= arr[left + 1]) {
+        left++;
+    }
+    if (left == n - 1) return 0;
+    //2
+    int right = n - 1;
+    while (right > 0 && arr[right - 1] <= arr[right]) {
+        right--;
+    }
+    //3
+    int result = std::min(n - left - 1, right);
+    //4
+    int i = 0, j = right;
+    while (i <= left && j < n) {
+        if (arr[i] <= arr[j]) {
+            result = std::min(result, j - i - 1);
+            i++;
+        } else {
+            j++;
+        }
+    }
+    return result;
+}
 
 
