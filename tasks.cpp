@@ -1051,4 +1051,27 @@ int tasks::task_1574(std::vector<int> &arr)
     return result;
 }
 
+std::vector<int> tasks::task_3254(std::vector<int> nums, int k)
+{
+    int n= nums.size();
+    int count=1;
+    std::vector<int> ans(n-k+1,-1); //создали массив заполненный -1, размером с n-k+1
+    int i=0,j=0;
+    while(j<n)
+    {
+        if(j>0 && nums[j]-nums[j-1]!=1)
+        {
+            i=j;
+        }
+        while(i<j && j-i+1>k)
+        {
+            i++;
+        }
+        if(j-i+1==k)
+            ans[j-k+1]=nums[j];
+        j++;
+    }
+    return ans;
+}
+
 
