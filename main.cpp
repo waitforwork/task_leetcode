@@ -7,27 +7,25 @@
 
 class Solution {
 public:
-    std::vector<int> resultsArray(std::vector<int>& nums, int k) {
-        int n= nums.size();
-        int count=1;
-        std::vector<int> ans(n-k+1,-1); //создали массив заполненный -1, размером с n-k+1
-        int i=0,j=0;
-        while(j<n)
-        {
-            if(j>0 && nums[j]-nums[j-1]!=1)
+    int shortestSubarray(std::vector<int>& nums, int k) {
+            const int n=nums.size();
+            int sum[n];
+            sum[0]=nums[0];
+            int dp[n], front =0, back=-1,len=1e9; //deque dp
+            for (int i=0;i<n;i++)
             {
-                i=j;
+                if (i>0) sum[i]=sum[i-1]+nums[i];
+                if (sum[i]>=k) len=std::min(len, i+1);
+                while(front<=back && sum[i]-sum[dp[front]]>=k)
+                {
+                    len=std::min(len, i-dp[front]);
+                    front++;
+                }
+                while(front<=back && sum[i]<=sum[dp[back]]) back--;
+                dp[++back]=i;
             }
-            while(i<j && j-i+1>k)
-            {
-                i++;
-            }
-            if(j-i+1==k)
-                ans[j-k+1]=nums[j];
-            j++;
+            return len==1e9?-1:len;
         }
-        return ans;
-    }
 };
 
 int main()
@@ -37,6 +35,5 @@ int main()
     std::string b="ghj";
     std::vector<int> c={1, 2, 3, 4, 3, 2, 5};
     Solution sol;
-    for (auto i:sol.resultsArray(c,3) )
-    std:: cout << "answer: \n" << i;
+    std:: cout << "answer: \n" << sol.shortestSubarray(c,4);
 }

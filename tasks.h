@@ -77,6 +77,7 @@ public:
     int task_2064_2(int n,std::vector<int>&quantities,int mid);                                                     //2064. арифметика, векторы
     int task_1574(std::vector<int>& arr);                                                                           //1574. математика вектор
     std::vector<int> task_3254(std::vector<int> nums, int k);                                                       //3254. арифметика вектор
+    int task_862(std::vector<int>& nums, int k);                                                                    //862. deque, и сумма чисел
 private:
     std::vector<int> result; //501
         int prev = 0;        //501

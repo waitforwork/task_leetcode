@@ -1074,4 +1074,25 @@ std::vector<int> tasks::task_3254(std::vector<int> nums, int k)
     return ans;
 }
 
+int tasks::task_862(std::vector<int> &nums, int k)
+{
+    const int n=nums.size();
+    long long sum[n];
+    sum[0]=nums[0];
+    int dp[n], front =0, back=-1,len=1e9; //deque dp
+    for (int i=0;i<n;i++)
+    {
+        if (i>0) sum[i]=sum[i-1]+nums[i];
+        if (sum[i]>=k) len=std::min(len, i+1);
+        while(front<=back && sum[i]-sum[dp[front]]>=k)
+        {
+            len=std::min(len, i-dp[front]);
+            front++;
+        }
+        while(front<=back && sum[i]<=sum[dp[back]]) back--;
+        dp[++back]=i;
+    }
+    return len==1e9?-1:len;
+}
+
 
