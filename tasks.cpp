@@ -1095,4 +1095,27 @@ int tasks::task_862(std::vector<int> &nums, int k)
     return len==1e9?-1:len;
 }
 
+std::vector<int> tasks::task_1652(std::vector<int> &code, int k)
+{
+    int n=code.size();
+    std::vector<int> ans(n,0);
+    for (int i=0;i<n;i++)
+    {
+        if (k>0)
+        {
+            for(int j=i+1;j<(i+1+k);j++)
+            {
+                ans[i]+=code[j%n];
+            }
+        } else if (k<0)
+        {
+            for(int j=i-1;j>(i-1-abs(k));j--)
+            {
+                ans[i]+=code[((j % n) + n) % n];
+            }
+        }
+
+    }
+    return ans;
+}
 
