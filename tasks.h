@@ -80,6 +80,7 @@ public:
     int task_862(std::vector<int>& nums, int k);                                                                    //862. deque, и сумма чисел
     std::vector<int> task_1652(std::vector<int>& code, int k);                                                      //1652. вектор математика
     long long task_2461(std::vector<int>& nums, int k);                                                             //2461. вектор, математика
+    int task_2516(std::string s, int k);                                                                            //2516.
 private:
     std::vector<int> result; //501
         int prev = 0;        //501
