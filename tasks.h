@@ -82,6 +82,7 @@ public:
     long long task_2461(std::vector<int>& nums, int k);                                                             //2461. вектор, математика
     int task_2516(std::string s, int k);                                                                            //2516. поиск в строке
     int task_2257(int m, int n, std::vector<std::vector<int>>& guards, std::vector<std::vector<int>>& walls);       //2257. вектора, игра
+    int task_1072(std::vector<std::vector<int>>& matrix);                                                           //1072. вектор перестановка
 private:
     std::vector<int> result; //501
         int prev = 0;        //501

@@ -1229,3 +1229,24 @@ int tasks::task_2257(int m, int n, std::vector<std::vector<int> > &guards, std::
     return unguarded;
 }
 
+int tasks::task_1072(std::vector<std::vector<int> > &matrix)
+{
+    std::unordered_map<std::string, int> patFreq;
+
+    for (const auto& row : matrix) {
+        std::string pattern;
+        if (row[0] == 0) {
+            for (int bit : row) pattern += std::to_string(bit);
+        } else {
+            for (int bit : row) pattern += std::to_string(bit ^ 1);
+        }
+        patFreq[pattern]++;
+    }
+
+    int maxFreq = 0;
+    for (const auto& pair : patFreq) {
+        maxFreq = std::max(maxFreq, pair.second);
+    }
+    return maxFreq;
+}
+
