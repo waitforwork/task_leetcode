@@ -1250,3 +1250,23 @@ int tasks::task_1072(std::vector<std::vector<int> > &matrix)
     return maxFreq;
 }
 
+std::vector<std::vector<char> > tasks::task_1861(std::vector<std::vector<char> > &box)
+{
+    const int r=box.size(), c=box[0].size();
+    std::vector<std::vector<char>> rotate(c, std::vector<char>(r, '.'));
+    for(int i=0; i<r; i++){
+        int bottom=c-1;
+        for(int j=c-1; j>=0; j--){
+            if (box[i][j]=='#'){
+                rotate[bottom][r-1-i]='#';
+                bottom--;
+            }
+            else if (box[i][j]=='*'){
+                rotate[j][r-1-i]='*';
+                bottom=j-1;
+            }
+        }
+    }
+    return rotate;
+}
+
