@@ -1270,3 +1270,15 @@ std::vector<std::vector<char> > tasks::task_1861(std::vector<std::vector<char> >
     return rotate;
 }
 
+long long tasks::task_1975(std::vector<std::vector<int> > &matrix)
+{
+    int count_minus=0;
+    int height=matrix[0].size();
+    int weight=matrix.size();
+    for (int i=0;i<weight;i++)
+        for (int j=0;j<height;j++)
+        {
+            if (matrix[i][j]<0) count_minus++;
+        }
+}
+

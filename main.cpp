@@ -7,25 +7,24 @@
 
 class Solution {
 public:
-    int shortestSubarray(std::vector<int>& nums, int k) {
-            const int n=nums.size();
-            int sum[n];
-            sum[0]=nums[0];
-            int dp[n], front =0, back=-1,len=1e9; //deque dp
-            for (int i=0;i<n;i++)
+    long long task_1975(std::vector<std::vector<int> > &matrix)
+    {
+        long long count_minus=0;
+        long long sum=0;
+        int min=INT_MAX;
+        int height=matrix[0].size();
+        int widht=matrix.size();
+        if (height==0 & widht==0) return 0;
+        for (int i=0;i<widht;i++)
+            for (int j=0;j<height;j++)
             {
-                if (i>0) sum[i]=sum[i-1]+nums[i];
-                if (sum[i]>=k) len=std::min(len, i+1);
-                while(front<=back && sum[i]-sum[dp[front]]>=k)
-                {
-                    len=std::min(len, i-dp[front]);
-                    front++;
-                }
-                while(front<=back && sum[i]<=sum[dp[back]]) back--;
-                dp[++back]=i;
+                if (matrix[i][j]<0) count_minus++;
+                sum+=std::abs(matrix[i][j]);
+                min=std::min(std::abs(matrix[i][j]),min);
             }
-            return len==1e9?-1:len;
-        }
+        if (count_minus==0) return sum;
+        if (count_minus%2==0) return sum; else return (sum-min-min);
+    }
 };
 
 int main()
@@ -33,7 +32,15 @@ int main()
     int n=3, x=4;
     std::string a="abcdl";
     std::string b="ghj";
-    std::vector<int> c={1, 2, 3, 4, 3, 2, 5};
+    std::vector<std::vector<int>> c={{1, 2},{ 3, -4}, {-3, 2},{5,-2}};
+    std::vector<std::vector<int>> c2={{1, -1},{-1, 1}};
+    std::vector<std::vector<int>> c3={{1, 2,3},{-1,-2, -3}, {1, 2,3}};
+    std::vector<std::vector<int>> c4={{1, 2},{3, -4}, {-3, 2},{5,-2}};
+    std::vector<std::vector<int>> c5={{1, 2},{3, -4}, {-3, 2},{5,-2}};
+    int koekak=5;
+    std::cout << INT_MIN << std::endl;
+    std::cout << " "<< INT_MAX << std::endl;
+    if (!koekak%2) std::cout << "koekak: " << koekak%2 <<std::endl; else std::cout << "koekak2: " << koekak%2 << std::endl;
     Solution sol;
-    std:: cout << "answer: \n" << sol.shortestSubarray(c,4);
+    std:: cout << "answer: \n" << sol.task_1975(c2);
 }
