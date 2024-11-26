@@ -8,6 +8,7 @@
 #include <queue>
 #include <map>
 #include <cmath>
+#include <bitset>
 
 #include <stdio.h>
 #include <stdint.h>
@@ -86,6 +87,7 @@ public:
     std::vector<std::vector<char>> task_1861(std::vector<std::vector<char>>& box);                                  //1861. вектор векторов
     long long task_1975(std::vector<std::vector<int>>& matrix);                                                     //1975. матрица, перемножение
     int task_773(std::vector<std::vector<int>>& board);                                                             //773. вектор векторов
+    int task_2924(int n, std::vector<std::vector<int>>& edges);                                                     //2924. вектор векторов
 private:
     std::vector<int> result; //501
         int prev = 0;        //501

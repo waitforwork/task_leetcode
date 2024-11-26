@@ -1326,3 +1326,22 @@ int tasks::task_773(std::vector<std::vector<int> > &board)
     return -1;
 }
 
+int tasks::task_2924(int n, std::vector<std::vector<int> > &edges)
+{
+    std::bitset<100> losses;
+
+    for (const auto& edge : edges) {
+        losses.set(edge[1]);
+    }
+
+    int champion = -1;
+    for (int i = 0; i < n; i++) {
+        if (!losses[i]) {
+            if (champion != -1) return -1;
+            champion = i;
+        }
+    }
+
+    return champion;
+}
+
