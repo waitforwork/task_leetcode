@@ -1345,3 +1345,38 @@ int tasks::task_2924(int n, std::vector<std::vector<int> > &edges)
     return champion;
 }
 
+std::vector<int> tasks::task_3243(int n, std::vector<std::vector<int> > &queries)
+{
+    std::vector<int> ans;
+    std::vector<std::vector<int>> adj(n);
+    std::vector<int> dist(n);
+    std::iota(dist.begin(), dist.end(), 0); //fills the array with 0,1,2,3...
+    for (int i = 0; i < n - 1; i++) {
+        adj[i].push_back(i + 1);
+    }
+    for (auto it : queries) {
+
+        int src = it[0], des = it[1];
+        adj[src].push_back(des);
+
+        if (dist[src] + 1 < dist[des]) {
+            //BFS
+            std::queue<int> q;
+            q.push(des);
+            dist[des] = dist[src] + 1;
+            while (q.size()) {
+                int idx = q.front();
+                q.pop();
+                for (auto e : adj[idx]) {
+                    if (dist[idx] + 1 < dist[e]) {
+                        dist[e] = dist[idx] + 1;
+                        q.push(e);
+                    }
+                }
+            }
+        }
+        ans.emplace_back(dist.back());
+    }
+    return ans;
+}
+

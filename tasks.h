@@ -9,6 +9,7 @@
 #include <map>
 #include <cmath>
 #include <bitset>
+#include <numeric> //для iota
 
 #include <stdio.h>
 #include <stdint.h>
@@ -88,6 +89,7 @@ public:
     long long task_1975(std::vector<std::vector<int>>& matrix);                                                     //1975. матрица, перемножение
     int task_773(std::vector<std::vector<int>>& board);                                                             //773. вектор векторов
     int task_2924(int n, std::vector<std::vector<int>>& edges);                                                     //2924. вектор векторов
+    std::vector<int> task_3243(int n, std::vector<std::vector<int>>& queries);                                      //3243. вектор векторов
 private:
     std::vector<int> result; //501
         int prev = 0;        //501
