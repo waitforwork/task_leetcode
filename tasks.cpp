@@ -1411,3 +1411,51 @@ int tasks::task_2290(std::vector<std::vector<int> > &grid)
     return distance[m-1][n-1];
 }
 
+int tasks::task_2577(std::vector<std::vector<int> > &grid)
+{
+    if (grid[0][1] > 1 && grid[1][0] > 1) return -1;
+
+    int rows = grid.size();
+    int cols = grid[0].size();
+
+    std::priority_queue<std::pair<int, std::pair<int, int>>,
+            std::vector<std::pair<int, std::pair<int, int>>>,
+            std::greater<std::pair<int, std::pair<int, int>>>> minHeap;
+
+    minHeap.push({0, {0, 0}}); // time, row(x), col(y)
+
+    std::vector<std::vector<int>> seen(rows, std::vector<int>(cols, 0));
+    seen[0][0] = 1;
+
+    std::vector<std::pair<int, int>> moves = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+
+    while (!minHeap.empty()) {
+        auto curr = minHeap.top();
+        int currTime = curr.first;
+        int currRow = curr.second.first;
+        int currCol = curr.second.second;
+
+        minHeap.pop();
+
+        if (currRow == rows - 1 && currCol == cols - 1)
+            return currTime;
+
+        for (auto move : moves) {
+            int nextRow = move.first + currRow;
+            int nextCol = move.second + currCol;
+
+            if (nextRow >= 0 && nextCol >= 0 &&
+                    nextRow < rows && nextCol < cols &&
+                    !seen[nextRow][nextCol]) {
+
+                int waitTime = ((grid[nextRow][nextCol] - currTime) % 2 == 0) ? 1 : 0;
+                int nextTime =std:: max(currTime + 1, grid[nextRow][nextCol] + waitTime);
+
+                minHeap.push({nextTime, {nextRow, nextCol}});
+                seen[nextRow][nextCol] = 1;
+            }
+        }
+    }
+    return -1;
+}
+
