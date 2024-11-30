@@ -1459,3 +1459,43 @@ int tasks::task_2577(std::vector<std::vector<int> > &grid)
     return -1;
 }
 
+std::vector<std::vector<int> > tasks::task_2097(std::vector<std::vector<int> > &pairs)
+{
+    std::unordered_map<int, std::vector<int>> adjacencyList;
+    std::unordered_map<int, int> inOutDegree;
+    for (const auto& pair : pairs) {
+        adjacencyList[pair[0]].push_back(pair[1]);
+        inOutDegree[pair[0]]++;  // out-degree
+        inOutDegree[pair[1]]--;  // in-degree
+    }
+    int startNode = pairs[0][0];
+    for (const auto& [node, degree] : inOutDegree) {
+        if (degree == 1) {
+            startNode = node;
+            break;
+        }
+    }
+    std::vector<int> path;
+    std::stack<int> nodeStack;
+    nodeStack.push(startNode);
+    while (!nodeStack.empty()) {
+        auto& neighbors = adjacencyList[nodeStack.top()];
+        if (neighbors.empty()) {
+            path.push_back(nodeStack.top());
+            nodeStack.pop();
+        } else {
+            int nextNode = neighbors.back();
+            nodeStack.push(nextNode);
+            neighbors.pop_back();
+        }
+    }
+    std::vector<std::vector<int>> arrangement;
+    int pathSize = path.size();
+    arrangement.reserve(pathSize - 1);
+
+    for (int i = pathSize - 1; i > 0; --i) {
+        arrangement.push_back({path[i], path[i-1]});
+    }
+    return arrangement;
+}
+

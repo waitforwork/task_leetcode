@@ -92,6 +92,7 @@ public:
     std::vector<int> task_3243(int n, std::vector<std::vector<int>>& queries);                                      //3243. вектор векторов
     int task_2290(std::vector<std::vector<int>>& grid);                                                             //2290. вектор векторов
     int task_2577(std::vector<std::vector<int>>& grid);                                                             //2577. вектор векторов
+    std::vector<std::vector<int>> task_2097(std::vector<std::vector<int>>& pairs);                                  //2097. вектор векторов
 private:
     std::vector<int> result; //501
         int prev = 0;        //501
