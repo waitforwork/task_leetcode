@@ -1499,3 +1499,15 @@ std::vector<std::vector<int> > tasks::task_2097(std::vector<std::vector<int> > &
     return arrangement;
 }
 
+bool tasks::task_1346(std::vector<int> &arr)
+{
+    std::unordered_set<int> seen;
+        for (auto i: arr)
+        {
+            if(seen.count(i*2) || ((i%2==0) && seen.count(i/2)))
+                return true;
+            seen.insert(i);
+        }
+        return false;
+}
+
