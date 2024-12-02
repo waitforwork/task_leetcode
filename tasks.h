@@ -94,6 +94,7 @@ public:
     int task_2577(std::vector<std::vector<int>>& grid);                                                             //2577. вектор векторов
     std::vector<std::vector<int>> task_2097(std::vector<std::vector<int>>& pairs);                                  //2097. вектор векторов
     bool task_1346(std::vector<int>& arr);                                                                          //1346. поиск по вектору
+    int task_1455(std::string sentence, std::string searchWord);                                                    //1455. поиск в строке
 private:
     std::vector<int> result; //501
         int prev = 0;        //501

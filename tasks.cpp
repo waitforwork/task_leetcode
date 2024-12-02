@@ -1511,3 +1511,13 @@ bool tasks::task_1346(std::vector<int> &arr)
         return false;
 }
 
+int tasks::task_1455(std::string sentence, std::string searchWord)
+{
+    int i = -1, wordIdx = 0;
+    do {
+        ++i, ++wordIdx;
+        if(sentence.substr(i, searchWord.size()) == searchWord) return wordIdx;
+    }while((i = sentence.find(' ', i)) != std::string::npos);
+    return -1;
+}
+
