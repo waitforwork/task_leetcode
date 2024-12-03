@@ -1521,3 +1521,19 @@ int tasks::task_1455(std::string sentence, std::string searchWord)
     return -1;
 }
 
+std::string tasks::task_2109(std::string s, std::vector<int> &spaces)
+{
+    const int m = spaces.size(), n = s.size();
+    std::string t(n + m, ' ');
+
+    int j = 0; // Pointer for spaces
+    for (int i = 0; i < n; i++) {
+        if (j < m && i == spaces[j]) {
+            t[i+j] = ' ';
+            j++;      // Move to the next space index
+        }
+        t[i+j]=s[i]; // Add the character from the original string
+    }
+    return t;
+}
+
