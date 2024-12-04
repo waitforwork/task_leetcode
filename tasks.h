@@ -96,6 +96,7 @@ public:
     bool task_1346(std::vector<int>& arr);                                                                          //1346. поиск по вектору
     int task_1455(std::string sentence, std::string searchWord);                                                    //1455. поиск в строке
     std::string task_2109(std::string s, std::vector<int>& spaces);                                                 //2109. поиск в строке
+    bool task_2825(std::string str1, std::string str2);                                                             //2825. поиск в строке
 private:
     std::vector<int> result; //501
         int prev = 0;        //501

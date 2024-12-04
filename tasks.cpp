@@ -1537,3 +1537,15 @@ std::string tasks::task_2109(std::string s, std::vector<int> &spaces)
     return t;
 }
 
+bool tasks::task_2825(std::string str1, std::string str2)
+{
+    int targetIdx = 0;
+    int targetLen = str2.length();
+    for (char currChar : str1) {
+        if (targetIdx < targetLen && (str2[targetIdx] - currChar + 26) % 26 <= 1) {
+            targetIdx++;
+        }
+    }
+    return targetIdx == targetLen;
+}
+
