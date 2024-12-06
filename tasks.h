@@ -98,6 +98,7 @@ public:
     std::string task_2109(std::string s, std::vector<int>& spaces);                                                 //2109. поиск в строке
     bool task_2825(std::string str1, std::string str2);                                                             //2825. поиск в строке
     bool task_2337(std::string start, std::string target);                                                          //2337. строки поиск
+    int task_2554(std::vector<int>& banned, int n, int maxSum);                                                     //2554. поиск по вектору
 private:
     std::vector<int> result; //501
         int prev = 0;        //501
