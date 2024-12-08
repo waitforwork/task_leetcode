@@ -100,6 +100,7 @@ public:
     bool task_2337(std::string start, std::string target);                                                          //2337. строки поиск
     int task_2554(std::vector<int>& banned, int n, int maxSum);                                                     //2554. поиск по вектору
     int task_1760(std::vector<int>& nums, int maxOperations);                                                       //1760. поиск в векторе
+    int task_2054(std::vector<std::vector<int>>& events);                                                           //2054. вектор векторов
 private:
     std::vector<int> result; //501
         int prev = 0;        //501

@@ -1619,3 +1619,44 @@ int tasks::task_1760(std::vector<int> &nums, int maxOperations)
     return high;
 }
 
+int tasks::task_2054(std::vector<std::vector<int> > &events)
+{
+    int n = events.size();
+
+    sort(events.begin(), events.end(), [](const std::vector<int>& a, const std::vector<int>& b) {
+        return a[0] < b[0];
+    });
+
+    std::vector<int> suffixMax(n);
+    suffixMax[n - 1] = events[n - 1][2];
+
+    for (int i = n - 2; i >= 0; --i) {
+        suffixMax[i] = std::max(events[i][2], suffixMax[i + 1]);
+    }
+
+    int maxSum = 0;
+
+    for (int i = 0; i < n; ++i) {
+        int left = i + 1, right = n - 1;
+        int nextEventIndex = -1;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (events[mid][0] > events[i][1]) {
+                nextEventIndex = mid;
+                right = mid - 1;
+            } else {
+                left = mid + 1;
+            }
+        }
+
+        if (nextEventIndex != -1) {
+            maxSum = std::max(maxSum, events[i][2] + suffixMax[nextEventIndex]);
+        }
+
+        maxSum = std::max(maxSum, events[i][2]);
+    }
+
+    return maxSum;
+}
+
