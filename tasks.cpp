@@ -1660,3 +1660,22 @@ int tasks::task_2054(std::vector<std::vector<int> > &events)
     return maxSum;
 }
 
+std::vector<bool> tasks::task_3152(std::vector<int> &nums, std::vector<int> &queries)
+{
+    int n = nums.size();
+    std::vector<int> prefix(n, 0);
+    for (int i = 1; i < n; i++) {
+        prefix[i] = prefix[i - 1];
+        if ((nums[i - 1] % 2 == 0 && nums[i] % 2 == 0) || (nums[i - 1] % 2 != 0 && nums[i] % 2 != 0)) {
+            prefix[i]++;
+        }
+    }
+    std::vector<bool> ans;
+    for (auto& q : queries) {
+        int left = q, right = q;
+        int specialCount = prefix[right] - (left > 0 ? prefix[left] : 0);
+        ans.push_back(specialCount == 0);
+    }
+    return ans;
+}
+
