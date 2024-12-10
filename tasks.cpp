@@ -1672,9 +1672,37 @@ std::vector<bool> tasks::task_3152(std::vector<int> &nums, std::vector<int> &que
     }
     std::vector<bool> ans;
     for (auto& q : queries) {
-        int left = q, right = q;
+        int left = q, right = q;// q[0] q[1]
         int specialCount = prefix[right] - (left > 0 ? prefix[left] : 0);
         ans.push_back(specialCount == 0);
+    }
+    return ans;
+}
+
+int tasks::task_2981(std::string s)
+{
+    int start = 0;
+    std::unordered_map<std::string, int> mp;
+    int n = s.length();
+    for (int i = 0; i < n; ++i) {
+        if (i == n - 1 || s[i] != s[i + 1]) {
+            int len = i - start + 1;
+            std::string t = s.substr(start, len);
+            start = i + 1;
+            mp[t]++;
+            if (len >= 2) {
+                mp[t.substr(0, len - 1)] += 2;
+            }
+            if (len >= 3) {
+                mp[t.substr(0, len - 2)] += 3;
+            }
+        }
+    }
+
+    int ans = -1;
+    for (auto& e : mp) {
+        int len = e.first.length();
+        if (e.second >= 3) ans = std::max(ans, len);
     }
     return ans;
 }
