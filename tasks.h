@@ -103,6 +103,7 @@ public:
     int task_2054(std::vector<std::vector<int>>& events);                                                           //2054. вектор векторов
     std::vector<bool> task_3152(std::vector<int>& nums, std::vector<int>& queries);                                 //3152. поиск по векторам
     int task_2981(std::string s);                                                                                   //2981. поиск в строке
+    int task_2779(std::vector<int>& nums, int k);                                                                   //2779. поиск в векторе
 private:
     std::vector<int> result; //501
         int prev = 0;        //501
