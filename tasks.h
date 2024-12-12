@@ -104,6 +104,7 @@ public:
     std::vector<bool> task_3152(std::vector<int>& nums, std::vector<int>& queries);                                 //3152. поиск по векторам
     int task_2981(std::string s);                                                                                   //2981. поиск в строке
     int task_2779(std::vector<int>& nums, int k);                                                                   //2779. поиск в векторе
+    long long task_2558(std::vector<int>& gifts, int k);                                                            //2558. поиск в векторе
 private:
     std::vector<int> result; //501
         int prev = 0;        //501
