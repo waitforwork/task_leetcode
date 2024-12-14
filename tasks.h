@@ -106,6 +106,7 @@ public:
     int task_2779(std::vector<int>& nums, int k);                                                                   //2779. поиск в векторе
     long long task_2558(std::vector<int>& gifts, int k);                                                            //2558. поиск в векторе
     long long task_2593(std::vector<int>& nums);                                                                    //2593. поиск в векторе
+    long long task_2762(std::vector<int>& nums);                                                                    //2762. поиск в векторе
 private:
     std::vector<int> result; //501
         int prev = 0;        //501

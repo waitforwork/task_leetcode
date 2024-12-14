@@ -1778,3 +1778,27 @@ long long tasks::task_2593(std::vector<int> &nums)
     return score;
 }
 
+long long tasks::task_2762(std::vector<int> &nums)
+{
+    int l = 0;
+    long long res = 0;
+    std::deque<int> minD, maxD;
+
+    for (int r = 0; r < nums.size(); r++) {
+        while (!minD.empty() && nums[minD.back()] >= nums[r]) minD.pop_back();
+        while (!maxD.empty() && nums[maxD.back()] <= nums[r]) maxD.pop_back();
+        minD.push_back(r);
+        maxD.push_back(r);
+
+        while (nums[maxD.front()] - nums[minD.front()] > 2) {
+            l++;
+            if (minD.front() < l) minD.pop_front();
+            if (maxD.front() < l) maxD.pop_front();
+        }
+
+        res += r - l + 1;
+    }
+
+    return res;
+}
+
