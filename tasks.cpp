@@ -1833,3 +1833,18 @@ double tasks::task_1792(std::vector<std::vector<int> > &classes, int extraStuden
     return sum / classes.size();
 }
 
+std::vector<int> tasks::task_3264(std::vector<int> &nums, int k, int multiplier)
+{
+    std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>, std::greater<std::pair<int, int>>> pq;
+    for(int i = 0; i < nums.size(); i++) {
+        pq.push({nums[i], i});
+    }
+    while(k--) {
+        auto it = pq.top();
+        pq.pop();
+        nums[it.second] = multiplier * it.first;
+        pq.push({multiplier * it.first, it.second});
+    }
+    return nums;
+}
+
