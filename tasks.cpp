@@ -1848,3 +1848,39 @@ std::vector<int> tasks::task_3264(std::vector<int> &nums, int k, int multiplier)
     return nums;
 }
 
+std::string tasks::task_2182(std::string s, int repeatLimit)
+{
+    sort(s.rbegin(), s.rend());
+
+    std::string result;
+    int freq = 1;
+    int pointer = 0;
+
+    for (int i = 0; i < s.size(); ++i) {
+        if (!result.empty() && result.back() == s[i]) {
+            if (freq < repeatLimit) {
+                result += s[i];
+                freq++;
+            } else {
+                pointer = std::max(pointer, i + 1);
+                while (pointer < s.size() && s[pointer] == s[i]) {
+                    pointer++;
+                }
+
+                if (pointer < s.size()) {
+                    result += s[pointer];
+                    std::swap(s[i], s[pointer]);
+                    freq = 1;
+                } else {
+                    break;
+                }
+            }
+        } else {
+            result += s[i];
+            freq = 1;
+        }
+    }
+
+    return result;
+}
+
