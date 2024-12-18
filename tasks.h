@@ -110,6 +110,7 @@ public:
     double task_1792(std::vector<std::vector<int>>& classes, int extraStudents);                                    //1792. вектор векторов
     std::vector<int> task_3264(std::vector<int>& nums, int k, int multiplier);                                      //3264. поиск в векторе
     std::string task_2182(std::string s, int repeatLimit);                                                          //2182. поиск в строке
+    std::vector<int> task_1475(std::vector<int>& prices);                                                           //1475. поиск в векторе
 private:
     std::vector<int> result; //501
         int prev = 0;        //501
