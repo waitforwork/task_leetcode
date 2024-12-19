@@ -111,6 +111,7 @@ public:
     std::vector<int> task_3264(std::vector<int>& nums, int k, int multiplier);                                      //3264. поиск в векторе
     std::string task_2182(std::string s, int repeatLimit);                                                          //2182. поиск в строке
     std::vector<int> task_1475(std::vector<int>& prices);                                                           //1475. поиск в векторе
+    int task_769(std::vector<int>& arr);                                                                            //769. поиск в векторе
 private:
     std::vector<int> result; //501
         int prev = 0;        //501

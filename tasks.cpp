@@ -1899,3 +1899,14 @@ std::vector<int> tasks::task_1475(std::vector<int> &prices)
     return ans;
 }
 
+int tasks::task_769(std::vector<int> &arr)
+{
+    const int n=arr.size();
+    int cnt=0, diff=0;
+    for(int i=0; i<n; i++){
+        diff+=arr[i]-i;
+        cnt+=(diff==0);
+    }
+    return cnt;
+}
+
