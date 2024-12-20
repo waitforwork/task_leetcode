@@ -112,6 +112,7 @@ public:
     std::string task_2182(std::string s, int repeatLimit);                                                          //2182. поиск в строке
     std::vector<int> task_1475(std::vector<int>& prices);                                                           //1475. поиск в векторе
     int task_769(std::vector<int>& arr);                                                                            //769. поиск в векторе
+    TreeNode *task_2415(TreeNode* root);                                                                            //2415. дерево
 private:
     std::vector<int> result; //501
         int prev = 0;        //501
