@@ -113,6 +113,7 @@ public:
     std::vector<int> task_1475(std::vector<int>& prices);                                                           //1475. поиск в векторе
     int task_769(std::vector<int>& arr);                                                                            //769. поиск в векторе
     TreeNode *task_2415(TreeNode* root);                                                                            //2415. дерево
+    int task_2872(int n, std::vector<std::vector<int>>& edges, std::vector<int>& values, int k);                    //2872. дерево
 private:
     std::vector<int> result; //501
         int prev = 0;        //501
