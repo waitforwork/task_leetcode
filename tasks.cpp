@@ -1969,3 +1969,38 @@ int tasks::task_2872(int n, std::vector<std::vector<int> > &edges, std::vector<i
     return compCnt;
 }
 
+std::vector<int> tasks::task_2940(std::vector<int> &heights, std::vector<std::vector<int> > &queries)
+{
+    int n=heights.size(), qz=queries.size();
+    std::vector<int> ans(qz, -1);
+    std::vector<std::pair<int, int>> idx;
+
+    for (int i= 0; i< qz; i++) {
+        int& x=queries[i][0], & y=queries[i][1];
+        if (x > y) // let x <= y
+            std::swap(x, y);
+        if (x == y|| heights[x]<heights[y])
+            ans[i] = y;
+        else idx.emplace_back(y, i);
+    }
+
+    sort(idx.begin(), idx.end(), std::greater<>());
+    std::vector<std::pair<int, int>> stack;
+
+    int j=n-1;
+    for (auto [_, i] : idx) {
+        int x = queries[i][0];
+        int y = queries[i][1];
+        for (; j >y; j--) {
+            while (!stack.empty() && heights[stack.back().second] < heights[j])
+                stack.pop_back();
+            stack.emplace_back(heights[j], j);
+        }
+
+        // Check if accessing elements beyond the bounds of stack here
+        auto it=upper_bound(stack.rbegin(), stack.rend(), std::make_pair(heights[x], n));
+        ans[i]=(it==stack.rend()) ?-1 : it->second;
+    }
+    return ans;
+}
+
