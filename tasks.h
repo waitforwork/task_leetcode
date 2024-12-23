@@ -115,6 +115,7 @@ public:
     TreeNode *task_2415(TreeNode* root);                                                                            //2415. дерево
     int task_2872(int n, std::vector<std::vector<int>>& edges, std::vector<int>& values, int k);                    //2872. дерево
     std::vector<int> task_2940(std::vector<int>& heights, std::vector<std::vector<int>>& queries);                  //2940. вектора поиск
+    int task_2471(TreeNode* root);                                                                                  //2471. дерево
 private:
     std::vector<int> result; //501
         int prev = 0;        //501
