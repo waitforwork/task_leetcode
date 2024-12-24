@@ -2037,3 +2037,45 @@ int tasks::task_2471(TreeNode *root)
     return swaps;
 }
 
+int tasks::task_3203(std::vector<std::vector<int> > &edges1, std::vector<std::vector<int> > &edges2)
+{
+    auto diameter = [](std::vector<std::vector<int>>& edges){
+        int n = edges.size() + 1;
+        std::vector<int> degree(n, 0);
+        std::vector<std::vector<int>> adj(n);
+        for (const auto& edge : edges){
+            int v = edge[0], w = edge[1];
+            adj[v].push_back(w);
+            adj[w].push_back(v);
+            degree[v]++;
+            degree[w]++;
+        }
+        std::deque<int> q;
+        for (int i = 0; i < n; i++){
+            if (degree[i] == 1){
+                q.push_back(i);
+            }
+        }
+        int level = 0, left = n;
+        while (left > 2){
+            int size_q = q.size();
+            left -= size_q;
+            for (int i = 0; i < size_q; i++){
+                int v = q.front();
+                q.pop_front();
+                for( int w : adj[v]){
+                    degree[w]--;
+                    if (degree[w] == 1){
+                        q.push_back(w);
+                    }
+                }
+            }
+            level++;
+        }
+        return left == 2 ? 2 * level + 1 : 2 * level;
+    };
+    int d1 = diameter(edges1);
+    int d2 = diameter(edges2);
+    return std::max({d1, d2, ((d1 + 1) / 2) + ((d2 + 1) / 2) + 1});
+}
+
