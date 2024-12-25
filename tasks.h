@@ -117,6 +117,7 @@ public:
     std::vector<int> task_2940(std::vector<int>& heights, std::vector<std::vector<int>>& queries);                  //2940. вектора поиск
     int task_2471(TreeNode* root);                                                                                  //2471. дерево
     int task_3203(std::vector<std::vector<int>>& edges1, std::vector<std::vector<int>>& edges2);                    //3203. дерево
+    std::vector<int> task_515(TreeNode* root);                                                                      //515. дерево
 private:
     std::vector<int> result; //501
         int prev = 0;        //501

@@ -2079,3 +2079,35 @@ int tasks::task_3203(std::vector<std::vector<int> > &edges1, std::vector<std::ve
     return std::max({d1, d2, ((d1 + 1) / 2) + ((d2 + 1) / 2) + 1});
 }
 
+std::vector<int> tasks::task_515(TreeNode *root)
+{
+    std::vector<int> ans;
+    if (!root) return ans;
+
+    std::queue<TreeNode*> q;
+    q.push(root);
+
+    while (!q.empty()) {
+        int L = q.size();
+        int M = INT_MIN;
+
+        for (int i = 0; i < L; i++) {
+            TreeNode* x = q.front();
+            q.pop();
+
+            M = std::max(M, x->val);
+
+            if (x->left != nullptr) {
+                q.push(x->left);
+            }
+            if (x->right != nullptr) {
+                q.push(x->right);
+            }
+        }
+
+        ans.push_back(M);
+    }
+
+    return ans;
+}
+
