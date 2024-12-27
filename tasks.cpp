@@ -2140,3 +2140,20 @@ int tasks::task_494(std::vector<int> &nums, int target)
     return dp[n][diff];
 }
 
+int tasks::task_1014(std::vector<int> &values)
+{
+    int n = values.size();
+    if (n < 2) return values[0] + values[1] + 0 - 1;
+    std::vector<int> suffixMax(n);
+    suffixMax[n - 1] = values[n - 1] - (n - 1);
+    for (int i = n - 2; i >= 0; i--) {
+        suffixMax[i] = std::max(suffixMax[i + 1], values[i] - i);
+    }
+    int maxScore = INT_MIN;
+    for (int i = 0; i < n - 1; i++) {
+        maxScore = std::max(maxScore, values[i] + i + suffixMax[i + 1]);
+    }
+
+    return maxScore;
+}
+
