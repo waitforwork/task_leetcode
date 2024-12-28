@@ -120,6 +120,8 @@ public:
     std::vector<int> task_515(TreeNode* root);                                                                      //515. дерево
     int task_494(std::vector<int>& nums, int target);                                                               //494. поиск в векторе
     int task_1014(std::vector<int>& values);                                                                        //1014. поиск в векторе
+    std::vector<int> task_689(std::vector<int>& nums, int k);                                                       //689. поиск в векторе
+
 private:
     std::vector<int> result; //501
         int prev = 0;        //501
