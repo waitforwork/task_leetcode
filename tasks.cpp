@@ -2196,3 +2196,21 @@ std::vector<int> tasks::task_689(std::vector<int> &nums, int k)
     return ans;
 }
 
+int tasks::task_1639(std::vector<std::string> &words, std::string target)
+{
+    int m = target.size(), n = words[0].size(), MOD = 1e9 + 7;
+    std::vector<std::vector<int>> freq(26, std::vector<int>(n, 0));
+    for (auto& word : words)
+        for (int i = 0; i < n; i++)
+            freq[word[i] - 'a'][i]++;
+
+    std::vector<long long> dp(m + 1, 0);
+    dp[0] = 1;
+    for (int j = 0; j < n; j++) {
+        for (int i = m - 1; i >= 0; i--) {
+            dp[i + 1] = (dp[i + 1] + dp[i] * freq[target[i] - 'a'][j]) % MOD;
+        }
+    }
+    return dp[m];
+}
+
