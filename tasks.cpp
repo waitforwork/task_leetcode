@@ -2265,3 +2265,26 @@ int tasks::task_983(std::vector<int> &days, std::vector<int> &costs)
     return dp[n - 1];
 }
 
+int tasks::task_1422(std::string s)
+{
+    int onesCount = 0;
+    int zerosCount = 0;
+    int bestScore = INT_MIN;
+
+    for (int i = 0; i < s.size() - 1; i++) {
+        if (s[i] == '1') {
+            onesCount++;
+        } else {
+            zerosCount++;
+        }
+
+        bestScore = std::max(bestScore, zerosCount - onesCount);
+    }
+
+    if (s[s.size() - 1] == '1') {
+        onesCount++;
+    }
+
+    return bestScore + onesCount;
+}
+
