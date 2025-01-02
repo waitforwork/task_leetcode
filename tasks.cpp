@@ -2288,3 +2288,23 @@ int tasks::task_1422(std::string s)
     return bestScore + onesCount;
 }
 
+std::vector<int> tasks::task_2559(std::vector<std::string> &words, std::vector<std::vector<int> > &queries)
+{
+    int n = words.size();
+    std::vector<int> Prefix(n + 1, 0);
+    std::unordered_set<char> vowels = {'a', 'e', 'i', 'o', 'u'};
+    for (int i = 0; i < n; i++) {
+        Prefix[i + 1] = Prefix[i];
+        if (vowels.count(words[i].front()) && vowels.count(words[i].back())) {
+            Prefix[i + 1]++;
+        }
+    }
+    std::vector<int> ANS;
+    for (auto& query : queries) {
+        int L = query[0], R = query[1];
+        ANS.push_back(Prefix[R + 1] - Prefix[L]);
+    }
+
+    return ANS;
+}
+
