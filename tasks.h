@@ -126,6 +126,7 @@ public:
     int task_983(std::vector<int>& days, std::vector<int>& costs);                                                  //983. поиск в векторе
     int task_1422(std::string s);                                                                                   //1422. поиск в строке
     std::vector<int> task_2559(std::vector<std::string>& words, std::vector<std::vector<int>>& queries);            //2559. поиск в векторе
+    int task_2270(std::vector<int>& nums);                                                                          //2270. математика
 private:
     std::vector<int> result; //501
         int prev = 0;        //501
