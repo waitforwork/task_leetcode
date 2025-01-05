@@ -128,6 +128,7 @@ public:
     std::vector<int> task_2559(std::vector<std::string>& words, std::vector<std::vector<int>>& queries);            //2559. поиск в векторе
     int task_2270(std::vector<int>& nums);                                                                          //2270. математика
     int task_1930(std::string s);                                                                                   //1930. поиск палиндрома
+    std::string task_2381(std::string s, std::vector<std::vector<int>>& shifts);                                    //2381. перестановка в строке
 private:
     std::vector<int> result; //501
         int prev = 0;        //501
