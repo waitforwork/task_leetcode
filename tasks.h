@@ -130,6 +130,7 @@ public:
     int task_1930(std::string s);                                                                                   //1930. поиск палиндрома
     std::string task_2381(std::string s, std::vector<std::vector<int>>& shifts);                                    //2381. перестановка в строке
     std::vector<int> task_1769(std::string boxes);                                                                  //1769. поиск в строке
+    std::vector<std::string> task_1408(std::vector<std::string>& words);                                            //1408. поиск подстрок в строке
 private:
     std::vector<int> result; //501
         int prev = 0;        //501

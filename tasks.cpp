@@ -2406,3 +2406,20 @@ std::vector<int> tasks::task_1769(std::string boxes)
     return res;
 }
 
+std::vector<std::string> tasks::task_1408(std::vector<std::string> &words)
+{
+    int n = words.size();
+    std::vector<std::string> ans;
+
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) {
+            if (i != j && words[j].find(words[i]) != std::string::npos) {
+                ans.push_back(words[i]);
+                break;
+            }
+        }
+    }
+
+    return ans;
+}
+
