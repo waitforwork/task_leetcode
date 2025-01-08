@@ -2423,3 +2423,31 @@ std::vector<std::string> tasks::task_1408(std::vector<std::string> &words)
     return ans;
 }
 
+int tasks::task_3042(std::vector<std::string> &words)
+{
+    int n = words.size();
+    int ans = 0;
+
+    for (int i = 0; i < n; i++) {
+        std::string s1 = words[i];
+
+        for (int j = i + 1; j < n; j++) {
+            std::string s2 = words[j];
+
+            // Skip if s2 is shorter than s1
+            if (s2.length() < s1.length())
+                continue;
+
+            // Extract prefix and suffix
+            std::string pre = s2.substr(0, s1.length());
+            std::string suf = s2.substr(s2.length() - s1.length());
+
+            // Check if both prefix and suffix match s1
+            if (pre == s1 && suf == s1) {
+                ans++;
+            }
+        }
+    }
+    return ans;
+}
+
