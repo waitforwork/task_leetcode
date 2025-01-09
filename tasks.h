@@ -132,6 +132,7 @@ public:
     std::vector<int> task_1769(std::string boxes);                                                                  //1769. поиск в строке
     std::vector<std::string> task_1408(std::vector<std::string>& words);                                            //1408. поиск подстрок в строке
     int task_3042(std::vector<std::string>& words);                                                                 //3042. поиск в строке суфикса и префикса
+    int task_2185(std::vector<std::string>& words, std::string pref);                                               //2185. поиск в векторе префикса
 private:
     std::vector<int> result; //501
         int prev = 0;        //501

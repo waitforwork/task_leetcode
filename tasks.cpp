@@ -2451,3 +2451,14 @@ int tasks::task_3042(std::vector<std::string> &words)
     return ans;
 }
 
+int tasks::task_2185(std::vector<std::string> &words, std::string pref)
+{
+    int count = 0;
+    for (const std::string& word : words) {
+        if (word.find(pref) == 0) {
+            count++;
+        }
+    }
+    return count;
+}
+
