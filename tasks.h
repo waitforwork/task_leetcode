@@ -134,6 +134,7 @@ public:
     int task_3042(std::vector<std::string>& words);                                                                 //3042. поиск в строке суфикса и префикса
     int task_2185(std::vector<std::string>& words, std::string pref);                                               //2185. поиск в векторе префикса
     std::vector<std::string> task_916(std::vector<std::string>& words1, std::vector<std::string>& words2);          //916. поиск в векторах
+    bool task_1400(std::string s, int k);                                                                           //1400. поиск палиндромов
 private:
     std::vector<int> result; //501
         int prev = 0;        //501

@@ -2503,3 +2503,20 @@ std::vector<std::string> tasks::task_916(std::vector<std::string> &words1, std::
     return result;
 }
 
+bool tasks::task_1400(std::string s, int k)
+{
+    if (s.length() < k) return false;
+
+    std::unordered_map<char, int> charCount;
+    for (char c : s) {
+        charCount[c]++;
+    }
+
+    int oddCount = 0;
+    for (auto& entry : charCount) {
+        if (entry.second % 2 != 0) oddCount++;
+    }
+
+    return oddCount <= k;
+}
+
