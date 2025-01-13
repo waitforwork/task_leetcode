@@ -136,6 +136,7 @@ public:
     std::vector<std::string> task_916(std::vector<std::string>& words1, std::vector<std::string>& words2);          //916. поиск в векторах
     bool task_1400(std::string s, int k);                                                                           //1400. поиск палиндромов
     bool task_2116(std::string s, std::string locked);                                                              //2116. закрытие скобок
+    int task_3223(std::string s);                                                                                   //3223. поиск в строке
 private:
     std::vector<int> result; //501
         int prev = 0;        //501
