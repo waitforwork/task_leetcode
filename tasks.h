@@ -137,6 +137,7 @@ public:
     bool task_1400(std::string s, int k);                                                                           //1400. поиск палиндромов
     bool task_2116(std::string s, std::string locked);                                                              //2116. закрытие скобок
     int task_3223(std::string s);                                                                                   //3223. поиск в строке
+    std::vector<int> task_2657(std::vector<int>& A, std::vector<int>& B);                                           //2657. сравнение двух векторов
 private:
     std::vector<int> result; //501
         int prev = 0;        //501

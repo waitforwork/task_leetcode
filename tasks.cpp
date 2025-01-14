@@ -2574,3 +2574,18 @@ int tasks::task_3223(std::string s)
     return totalLength;
 }
 
+std::vector<int> tasks::task_2657(std::vector<int> &A, std::vector<int> &B)
+{
+    int n = A.size();
+    std::vector<int> freq(n + 1, 0);
+    std::vector<int> ans;
+    int common = 0;
+
+    for (int i = 0; i < n; i++) {
+        if (++freq[A[i]] == 2) common++;
+        if (++freq[B[i]] == 2) common++;
+        ans.push_back(common);
+    }
+    return ans;
+}
+
