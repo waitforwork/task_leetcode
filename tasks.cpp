@@ -2589,3 +2589,21 @@ std::vector<int> tasks::task_2657(std::vector<int> &A, std::vector<int> &B)
     return ans;
 }
 
+int tasks::task_2429(int num1, int num2)
+{
+    int a = __builtin_popcount(num1);
+    int b = __builtin_popcount(num2);
+    int res = num1;
+    for (int i = 0; i < 32; ++i) {
+        if (a > b && (1 << i) & num1) {
+            res ^= 1 << i;
+            --a;
+        }
+        if (a < b && !((1 << i) & num1)) {
+            res ^= 1 << i;
+            ++a;
+        }
+    }
+    return res;
+}
+

@@ -138,6 +138,7 @@ public:
     bool task_2116(std::string s, std::string locked);                                                              //2116. закрытие скобок
     int task_3223(std::string s);                                                                                   //3223. поиск в строке
     std::vector<int> task_2657(std::vector<int>& A, std::vector<int>& B);                                           //2657. сравнение двух векторов
+    int task_2429(int num1, int num2);                                                                              //2429. минимальный хор
 private:
     std::vector<int> result; //501
         int prev = 0;        //501
