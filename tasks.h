@@ -139,6 +139,7 @@ public:
     int task_3223(std::string s);                                                                                   //3223. поиск в строке
     std::vector<int> task_2657(std::vector<int>& A, std::vector<int>& B);                                           //2657. сравнение двух векторов
     int task_2429(int num1, int num2);                                                                              //2429. минимальный хор
+    int task_2425(std::vector<int>& nums1, std::vector<int>& nums2);                                                //2425. побитовое или
 private:
     std::vector<int> result; //501
         int prev = 0;        //501
