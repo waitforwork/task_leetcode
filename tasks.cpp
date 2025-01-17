@@ -2625,4 +2625,9 @@ int tasks::task_2425(std::vector<int> &nums1, std::vector<int> &nums2)
     }
     return x1 ^ x2;
 }
+// вычисления накопительной суммы элементов в диапазоне
+bool tasks::task_2683(std::vector<int> &derived)
+{
+    return accumulate(derived.begin(), derived.end(), 0, std::bit_xor<>())==0;
+}
 
