@@ -2631,3 +2631,33 @@ bool tasks::task_2683(std::vector<int> &derived)
     return accumulate(derived.begin(), derived.end(), 0, std::bit_xor<>())==0;
 }
 
+int tasks::task_1368(std::vector<std::vector<int> > &grid)
+{
+    const int dx[4] = {0, 0, 1, -1};
+    const int dy[4] = {1, -1, 0, 0};
+    int r = grid.size(), c = grid[0].size();
+    std::vector<std::vector<int>> dist(r, std::vector<int>(c, INT_MAX));
+    std::deque<std::pair<int, int>> dq;
+    dq.emplace_front(0, 0);
+    dist[0][0] = 0;
+
+    while (!dq.empty()) {
+        auto [x, y] = dq.front(); dq.pop_front();
+                for (int i = 0; i < 4; ++i) {
+            int nx = x + dx[i], ny = y + dy[i];
+            if (nx >= 0 && nx < r && ny >= 0 && ny < c) {
+                int cost = (i + 1 == grid[x][y]) ? 0 : 1;
+                if (dist[x][y] + cost < dist[nx][ny]) {
+                    dist[nx][ny] = dist[x][y] + cost;
+                    if (cost == 0) {
+                        dq.emplace_front(nx, ny);
+                    } else {
+                        dq.emplace_back(nx, ny);
+                    }
+                }
+            }
+        }
+    }
+    return dist[r-1][c-1];
+}
+
