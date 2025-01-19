@@ -142,6 +142,7 @@ public:
     int task_2425(std::vector<int>& nums1, std::vector<int>& nums2);                                                //2425. побитовое или
     bool task_2683(std::vector<int>& derived);                                                                      //2683. побитовое или
     int task_1368(std::vector<std::vector<int>>& grid);                                                             //1368. игра со стрелками векторов
+    int task_407(std::vector<std::vector<int>>& heightMap);                                                         //407. поиск в векторе векторов
 private:
     std::vector<int> result; //501
         int prev = 0;        //501
