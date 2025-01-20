@@ -2708,3 +2708,27 @@ int tasks::task_407(std::vector<std::vector<int> > &heightMap)
     return ans;
 }
 
+int tasks::task_2661(std::vector<int> &arr, std::vector<std::vector<int> > &mat)
+{
+    int rows = mat.size(), cols = mat[0].size();
+    std::unordered_map<int, std::pair<int, int>> positionMap;
+    std::vector<int> rowCount(rows, cols), colCount(cols, rows);
+
+    for (int r = 0; r < rows; ++r) {
+        for (int c = 0; c < cols; ++c) {
+            positionMap[mat[r][c]] = {r, c};
+        }
+    }
+
+    for (int idx = 0; idx < arr.size(); ++idx) {
+        int val = arr[idx];
+        auto [row, col] = positionMap[val];
+
+                if (--rowCount[row] == 0 || --colCount[col] == 0) {
+            return idx;
+        }
+    }
+
+    return -1;
+}
+

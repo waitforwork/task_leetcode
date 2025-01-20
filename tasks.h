@@ -143,6 +143,7 @@ public:
     bool task_2683(std::vector<int>& derived);                                                                      //2683. побитовое или
     int task_1368(std::vector<std::vector<int>>& grid);                                                             //1368. игра со стрелками векторов
     int task_407(std::vector<std::vector<int>>& heightMap);                                                         //407. поиск в векторе векторов
+    int task_2661(std::vector<int>& arr, std::vector<std::vector<int>>& mat);                                       //2661. поиск в векторах
 private:
     std::vector<int> result; //501
         int prev = 0;        //501
