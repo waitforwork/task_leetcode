@@ -2732,3 +2732,19 @@ int tasks::task_2661(std::vector<int> &arr, std::vector<std::vector<int> > &mat)
     return -1;
 }
 
+long long tasks::task_2017(std::vector<std::vector<int> > &grid)
+{
+    long long top = 0;
+    for (int i = 0; i < grid[0].size(); i++) {
+        top += grid[0][i];
+    }
+
+    long long bottom = 0, res = LLONG_MAX;
+    for (int i = 0; i < grid[0].size(); i++) {
+        top -= grid[0][i]; // First robot picks from the top row
+        res = std::min(res, std::max(top, bottom)); // Minimize the maximum score for the second robot
+        bottom += grid[1][i]; // Second robot picks from the bottom row 🤖
+    }
+    return res;
+}
+
