@@ -145,6 +145,7 @@ public:
     int task_407(std::vector<std::vector<int>>& heightMap);                                                         //407. поиск в векторе векторов
     int task_2661(std::vector<int>& arr, std::vector<std::vector<int>>& mat);                                       //2661. поиск в векторах
     long long task_2017(std::vector<std::vector<int>>& grid);                                                       //2017. перестановка в векторе
+    std::vector<std::vector<int>> task_1765(std::vector<std::vector<int>>& isWater);                                //1765. поиск в векторе
 private:
     std::vector<int> result; //501
         int prev = 0;        //501
