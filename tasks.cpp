@@ -2779,3 +2779,27 @@ std::vector<std::vector<int> > tasks::task_1765(std::vector<std::vector<int> > &
     return H;
 }
 
+int tasks::task_1267(std::vector<std::vector<int> > &grid)
+{
+    std::vector<int> Rows(grid.size());
+    std::vector<int> Col(grid[0].size());
+
+    // Calculate row and column sums
+    for (int i = 0; i < grid.size(); i++) {
+        for (int j = 0; j < grid[0].size(); j++) {
+            Rows[i] += grid[i][j];
+            Col[j] += grid[i][j];
+        }
+    }
+
+    int ans = 0;
+    for (int i = 0; i < grid.size(); i++) {
+        for (int j = 0; j < grid[0].size(); j++) {
+            if (grid[i][j] == 1 && (Rows[i] > 1 || Col[j] > 1)) {
+                ans++;
+            }
+        }
+    }
+    return ans;
+}
+
