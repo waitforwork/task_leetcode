@@ -147,6 +147,7 @@ public:
     long long task_2017(std::vector<std::vector<int>>& grid);                                                       //2017. перестановка в векторе
     std::vector<std::vector<int>> task_1765(std::vector<std::vector<int>>& isWater);                                //1765. поиск в векторе
     int task_1267(std::vector<std::vector<int>>& grid);                                                             //1267. вектор, матрица
+    std::vector<int> task_802(std::vector<std::vector<int>>& graph);                                                //802. поиск в векторе
 private:
     std::vector<int> result; //501
         int prev = 0;        //501
