@@ -150,6 +150,7 @@ public:
     std::vector<int> task_802(std::vector<std::vector<int>>& graph);                                                //802. поиск в векторе
     std::vector<int> task_2948(std::vector<int>& nums, int limit);                                                  //2948. поиск в векторе
     int task_2127(std::vector<int>& favorite);                                                                      //2127. поиск в векторе
+    std::vector<bool> task_1462(int numCourses, std::vector<std::vector<int>>& prerequisites, std::vector<std::vector<int>>& queries);
 private:
     std::vector<int> result; //501
         int prev = 0;        //501
