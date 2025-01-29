@@ -2983,3 +2983,42 @@ int tasks::task_2658(std::vector<std::vector<int> > &grid)
     return Max;
 }
 
+std::vector<int> tasks::task_684(std::vector<std::vector<int> > &edges)
+{
+    std::unordered_map<int, std::vector<int>> graph;
+
+    auto isConnected = [&](int u, int v) {
+        std::unordered_set<int> visited;
+        std::stack<int> stack;
+        stack.push(u);
+
+        while (!stack.empty()) {
+            int node = stack.top();
+            stack.pop();
+
+            if (visited.count(node)) continue;
+            visited.insert(node);
+
+            if (node == v) return true;
+
+            for (int neighbor : graph[node]) {
+                stack.push(neighbor);
+            }
+        }
+        return false;
+    };
+
+    for (const auto& edge : edges) {
+        int u = edge[0], v = edge[1];
+
+        if (graph.count(u) && graph.count(v) && isConnected(u, v)) {
+            return edge;
+        }
+
+        graph[u].push_back(v);
+        graph[v].push_back(u);
+    }
+
+    return {};
+}
+
