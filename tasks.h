@@ -153,6 +153,7 @@ public:
     std::vector<bool> task_1462(int numCourses, std::vector<std::vector<int>>& prerequisites, std::vector<std::vector<int>>& queries);
     int task_2658(std::vector<std::vector<int>>& grid);                                                             //2658. поиск в векторе
     std::vector<int> task_684(std::vector<std::vector<int>>& edges);                                                //684. поиск в векторе
+    int task_2493(int n, std::vector<std::vector<int>>& edges);                                                     //2493. поиск по вектору
 private:
     std::vector<int> result; //501
         int prev = 0;        //501

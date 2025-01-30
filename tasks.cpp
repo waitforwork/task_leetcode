@@ -3022,3 +3022,80 @@ std::vector<int> tasks::task_684(std::vector<std::vector<int> > &edges)
     return {};
 }
 
+int tasks::task_2493(int n, std::vector<std::vector<int> > &edges)
+{
+    // Step 1: Construct adjacency list
+    std::vector<std::vector<int>> g(n+1);
+    for(auto &e: edges){
+        g[e[0]].push_back(e[1]);
+        g[e[1]].push_back(e[0]);
+    }
+
+    // Step 2: Color array for bipartite check
+    std::vector<int> color(n+1, 0);
+
+    // Step 3: Bipartite check with BFS
+    auto bipBfs = [&](int start) {
+        std::queue<int> q;
+        q.push(start);
+        color[start] = 1;
+        std::vector<int> comp;
+
+        while(!q.empty()){
+            int u = q.front();
+            q.pop();
+            comp.push_back(u);
+            for(int v : g[u]){
+                if(!color[v]){
+                    color[v] = -color[u];  // Alternate coloring
+                    q.push(v);
+                } else if(color[v] == color[u]) {
+                    return std::vector<int>();  // Not bipartite
+                }
+            }
+        }
+        return comp;
+    };
+
+    int ans = 0;
+
+    // Step 4: Process each component
+    for(int i = 1; i <= n; i++) {
+        if (!color[i]) {
+            auto comp = bipBfs(i);
+            if (comp.empty()) return -1;  // Not bipartite
+
+            int best = 0;
+
+            // Step 5: Find maximum BFS depth in the component
+            for(auto &x: comp) {
+                std::vector<int> dist(n+1, -1);
+                dist[x] = 0;
+                std::queue<int> q;
+                q.push(x);
+
+                while(!q.empty()){
+                    int u = q.front();
+                    q.pop();
+                    for(int v : g[u]){
+                        if (dist[v] < 0) {
+                            dist[v] = dist[u] + 1;
+                            q.push(v);
+                        }
+                    }
+                }
+
+                // Compute max depth in the component
+                int layers = 0;
+                for(auto &cnode : comp)
+                    if (dist[cnode] >= 0)
+                        layers = std::max(layers, dist[cnode]);
+
+                best = std::max(best, layers + 1);
+            }
+            ans += best;
+        }
+    }
+    return ans;
+}
+
