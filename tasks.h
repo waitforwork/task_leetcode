@@ -155,6 +155,7 @@ public:
     std::vector<int> task_684(std::vector<std::vector<int>>& edges);                                                //684. поиск в векторе
     int task_2493(int n, std::vector<std::vector<int>>& edges);                                                     //2493. поиск по вектору
     int task_827(std::vector<std::vector<int>>& grid);                                                              //827. поиск в векторе
+    bool task_3151(std::vector<int>& nums);                                                                         //3151. разность соседних чисел
 private:
     std::vector<int> result; //501
         int prev = 0;        //501
