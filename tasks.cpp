@@ -3178,3 +3178,11 @@ bool tasks::task_3151(std::vector<int> &nums)
     return true;
 }
 
+bool tasks::task_1752(std::vector<int> &nums)
+{
+    int count = 0;
+    for (int i = 0; i < nums.size(); i++)
+        if (nums[i] > nums[(i+1)%nums.size()] && ++count > 1) return false;
+    return true;
+}
+
