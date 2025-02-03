@@ -157,6 +157,7 @@ public:
     int task_827(std::vector<std::vector<int>>& grid);                                                              //827. поиск в векторе
     bool task_3151(std::vector<int>& nums);                                                                         //3151. разность соседних чисел
     bool task_1752(std::vector<int>& nums);                                                                         //1752. поиск в векторе
+    int task_3105(std::vector<int>& nums);                                                                          //3105. поиск в векторе
 private:
     std::vector<int> result; //501
         int prev = 0;        //501
