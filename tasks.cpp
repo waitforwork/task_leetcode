@@ -3200,3 +3200,17 @@ int tasks::task_3105(std::vector<int> &nums)
     return ans;
 }
 
+int tasks::task_1800(std::vector<int> &nums)
+{
+    const int n=nums.size();
+    int maxSum=0, sum=nums[0];
+    for(int r=1; r<n; r++){
+        if (nums[r]>nums[r-1]) sum+=nums[r];
+        else{
+            maxSum=std::max(maxSum, sum);
+            sum=nums[r];
+        }
+    }
+    return std::max(maxSum, sum);
+}
+
