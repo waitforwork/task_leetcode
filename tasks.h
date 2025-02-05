@@ -159,6 +159,7 @@ public:
     bool task_1752(std::vector<int>& nums);                                                                         //1752. поиск в векторе
     int task_3105(std::vector<int>& nums);                                                                          //3105. поиск в векторе
     int task_1800(std::vector<int>& nums);                                                                          //1800. поиск в векторе
+    bool task_1790(std::string s1, std::string s2);                                                                 //1790. сравнение двух строк
 private:
     std::vector<int> result; //501
         int prev = 0;        //501
