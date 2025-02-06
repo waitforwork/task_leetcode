@@ -3243,3 +3243,16 @@ bool tasks::task_1790(std::string s1, std::string s2)
     return false;
 }
 
+int tasks::task_1726(std::vector<int> &nums)
+{
+    std::unordered_map<int, int> mp;
+    int ans = 0, n = nums.size();
+    for (int i = 0; i < n; i++)
+        for (int j = i + 1; j < n; j++) {
+            int product = nums[i] * nums[j];
+            ans += 8 * mp[product];
+            mp[product]++;
+        }
+    return ans;
+}
+
