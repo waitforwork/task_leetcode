@@ -3256,3 +3256,20 @@ int tasks::task_1726(std::vector<int> &nums)
     return ans;
 }
 
+std::vector<int> tasks::task_3160(int limit, std::vector<std::vector<int> > &queries)
+{
+    std::unordered_map<int,int> ball, color;
+    std::vector<int> ans;
+    ans.reserve(queries.size());
+    int distinct = 0;
+    for(auto &q : queries) {
+        int pos = q[0], c = q[1];
+        if(ball.count(pos))
+            if(--color[ball[pos]] == 0) distinct--;
+        ball[pos] = c;
+        if(++color[c] == 1) distinct++;
+        ans.push_back(distinct);
+    }
+    return ans;
+}
+

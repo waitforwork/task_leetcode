@@ -161,6 +161,7 @@ public:
     int task_1800(std::vector<int>& nums);                                                                          //1800. поиск в векторе
     bool task_1790(std::string s1, std::string s2);                                                                 //1790. сравнение двух строк
     int task_1726(std::vector<int>& nums);                                                                          //1726. поиск в векторе
+    std::vector<int> task_3160(int limit, std::vector<std::vector<int>>& queries);                                  //3160. поиск в векторе
 private:
     std::vector<int> result; //501
         int prev = 0;        //501
