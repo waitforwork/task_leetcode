@@ -162,6 +162,7 @@ public:
     bool task_1790(std::string s1, std::string s2);                                                                 //1790. сравнение двух строк
     int task_1726(std::vector<int>& nums);                                                                          //1726. поиск в векторе
     std::vector<int> task_3160(int limit, std::vector<std::vector<int>>& queries);                                  //3160. поиск в векторе
+
 private:
     std::vector<int> result; //501
         int prev = 0;        //501
@@ -169,6 +170,30 @@ private:
         int maxi = 0;        //501
         std::vector<int> depth, levelArr, max1, max2;   //2458
         int getMaxElement(std::vector<int>& nums);//2601
+};
+
+//2349. вектор, мапа
+class NumberContainers {
+public:
+    std::unordered_map<int, std::priority_queue<int, std::vector<int>, std::greater<int>>> res;
+    std::unordered_map<int, int> index_val;
+
+    void change(int index, int number) {
+        if (index_val.count(index)) {
+            int prevNum = index_val[index];
+            if (prevNum == number) return;
+            res[prevNum].push(INT_MAX); // Lazy deletion
+        }
+        res[number].push(index);
+        index_val[index] = number;
+    }
+
+    int find(int number) {
+        while (!res[number].empty() && index_val[res[number].top()] != number) {
+            res[number].pop();
+        }
+        return res[number].empty() ? -1 : res[number].top();
+    }
 };
 
 #endif // TASKS
