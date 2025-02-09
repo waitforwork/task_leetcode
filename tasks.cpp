@@ -3273,3 +3273,17 @@ std::vector<int> tasks::task_3160(int limit, std::vector<std::vector<int> > &que
     return ans;
 }
 
+long long tasks::task_2364(std::vector<int> &nums)
+{
+    std::unordered_map<int, int> freq;
+    long long goodPairs = 0, n = nums.size();
+
+    for (int i = 0; i < n; i++) {
+        int key = nums[i] - i;
+        goodPairs += freq[key];
+        freq[key]++;
+    }
+
+    return (n * (n - 1)) / 2 - goodPairs;
+}
+
