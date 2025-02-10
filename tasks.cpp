@@ -3287,3 +3287,16 @@ long long tasks::task_2364(std::vector<int> &nums)
     return (n * (n - 1)) / 2 - goodPairs;
 }
 
+std::string tasks::task_3174(std::string s)
+{
+    std::string stack;
+    for (char c : s) {
+        if (isdigit(c)) {
+            if (!stack.empty()) stack.pop_back();
+        } else {
+            stack.push_back(c);
+        }
+    }
+    return stack;
+}
+
