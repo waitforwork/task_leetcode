@@ -166,6 +166,7 @@ public:
     std::string task_3174(std::string s);                                                                           //3174. поиск в строке
     std::string task_1910(std::string s, std::string part);                                                         //1910. поиск в строке
     int task_2342(std::vector<int>& nums);                                                                          //2342. поиск в векторе
+    int task_3066(std::vector<int>& nums, int k);                                                                   //3066. приоритетная очередь
 private:
     std::vector<int> result; //501
         int prev = 0;        //501

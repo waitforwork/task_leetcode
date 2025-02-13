@@ -3334,3 +3334,30 @@ int tasks::task_2342(std::vector<int> &nums)
     return ans;
 }
 
+int tasks::task_3066(std::vector<int> &nums, int k)
+{
+    //приоритетная очередь, greater для того, чтобы на вершине очереди всегда находился наименьший элемент
+        std::priority_queue<double,std::vector<double>,std::greater<double>>pq;
+        //заполняем очередь элементами из вектора
+        for(int &num:nums) {
+            pq.push(num);
+        }
+        int result=0;
+        //пока в очереди больше 1 элемента
+        while(pq.size()>1){
+            //извлекаем наименьший элемент из очереди
+            double x = pq.top();
+            //удаляем его из очереди
+            pq.pop();
+            double y = pq.top();
+            pq.pop();
+            //если наименьший из достаных чисел больше к, то возвращаем результат операций
+            if(x>=k){return result;}
+            double n = 2*(double)std::min(x,y)+(double)std::max(x,y);
+            //пушим обратно в очередь новый элемент
+            pq.push(n);
+            result++;
+        }
+        return result;
+}
+
