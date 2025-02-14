@@ -167,6 +167,7 @@ public:
     std::string task_1910(std::string s, std::string part);                                                         //1910. поиск в строке
     int task_2342(std::vector<int>& nums);                                                                          //2342. поиск в векторе
     int task_3066(std::vector<int>& nums, int k);                                                                   //3066. приоритетная очередь
+
 private:
     std::vector<int> result; //501
         int prev = 0;        //501
@@ -197,6 +198,41 @@ public:
             res[number].pop();
         }
         return res[number].empty() ? -1 : res[number].top();
+    }
+};
+
+//1352. вектор, простая
+class ProductOfNumbers {
+public:
+    // Вектор для хранения произведений на каждом шаге
+    std::vector<int> list;
+    // Переменная для хранения текущего произведения
+    int prod = 1;
+    // Конструктор класса
+    ProductOfNumbers() {}
+    // Метод для добавления числа
+    void add(int num) {
+        // Если добавляемое число равно 0
+        if (num == 0) {
+            // Очищаем вектор и сбрасываем произведение
+            list.clear();
+            prod = 1;
+        } else {
+            // Умножаем текущее произведение на добавляемое число
+            prod *= num;
+            // Добавляем текущее произведение в вектор
+            list.push_back(prod);
+        }
+    }
+    // Метод для получения произведения последних k добавленных чисел
+    int getProduct(int k) {
+        // Если в векторе меньше k элементов, возвращаем 0
+        if (list.size() < k) return 0;
+        // Если в векторе ровно k элементов, возвращаем последнее произведение
+        if (list.size() == k) return list.back();
+        // Возвращаем произведение последних k чисел
+        // Делим последнее произведение на произведение, которое было добавлено k элементов назад
+        return list.back() / list[list.size() - k - 1];
     }
 };
 
