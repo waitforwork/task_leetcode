@@ -3376,3 +3376,34 @@ int tasks::task_2698(int n)
     return res;
 }
 
+std::vector<int> tasks::task_1718(int n)
+{
+    this->n = n;
+    az = 2 * n - 1;
+    ans1.assign(az, 0);
+    dfs(0);
+    return ans1;
+}
+
+bool tasks::dfs(int pos)
+{
+    if (pos==az) return viz1.count()==n;  // Base case: all numbers used
+    if (ans1[pos]!= 0) return dfs(pos+1);  // Skip if already filled
+
+    for (int j=n; j>= 1; j--) {  // larger first
+        if (viz1[j]) continue;  // If j is used, skip
+        int next_pos=(j>1)?pos+j:pos;  // should put j
+
+        if (next_pos>=az || ans1[next_pos]!=0) continue;  // Ensure valid placement
+
+        ans1[pos]=ans1[next_pos]= j;  // Place j
+        viz1[j]=1;
+
+        if (dfs(pos+1)) return 1;  // Recurse
+
+        // Backtrack
+        ans1[pos]=ans1[next_pos]=viz1[j]=0;
+    }
+    return 0;
+}
+

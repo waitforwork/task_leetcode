@@ -27,6 +27,9 @@ struct TreeNode //501,2583
 class tasks
 {
 public:
+    int n, az;
+        std::bitset<21> viz1 = 0;
+        std::vector<int> ans1;
     tasks();
     int task_80(std::vector<int>& nums);                                                                            //80. удаление дубликатов
     void task_88(std::vector<int>& nums1, int m, std::vector<int>& nums2, int n);                                   //88. объединение массивов
@@ -168,7 +171,8 @@ public:
     int task_2342(std::vector<int>& nums);                                                                          //2342. поиск в векторе
     int task_3066(std::vector<int>& nums, int k);                                                                   //3066. приоритетная очередь
     int task_2698(int n);                                                                                           //2698. математика
-
+    std::vector<int> task_1718(int n);                                                                              //1718. математика
+     bool dfs(int pos);                                                                                             //1718. математика
 private:
     std::vector<int> result; //501
         int prev = 0;        //501
