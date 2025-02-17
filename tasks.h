@@ -173,6 +173,7 @@ public:
     int task_2698(int n);                                                                                           //2698. математика
     std::vector<int> task_1718(int n);                                                                              //1718. математика
      bool dfs(int pos);                                                                                             //1718. математика
+     int task_1079(std::string tiles);                                                                              //1079. факториал
 private:
     std::vector<int> result; //501
         int prev = 0;        //501
