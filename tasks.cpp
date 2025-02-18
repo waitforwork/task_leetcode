@@ -3462,3 +3462,20 @@ int tasks::task_1079(std::string tiles)
         return ans; // Возвращаем общее количество комбинаций
 }
 
+std::string tasks::task_2375(std::string pattern)
+{
+    int n=pattern.size();
+    std::string result = "";
+    int stack[n+1];
+    int index = 0;
+    for (int i=0; i<=n; i++){
+        stack[index++] = i+1; //stack[1]=1, stack[2]=2
+        if (i==n || pattern[i]=='I'){ //если мы дошли до конца строки или символ в строке равен I
+            while(index>0){  //пока индекс больше 0
+                result += std::to_string(stack[--index]);
+            }
+        }
+    }
+    return result;
+}
+

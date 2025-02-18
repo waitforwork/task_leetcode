@@ -172,8 +172,9 @@ public:
     int task_3066(std::vector<int>& nums, int k);                                                                   //3066. приоритетная очередь
     int task_2698(int n);                                                                                           //2698. математика
     std::vector<int> task_1718(int n);                                                                              //1718. математика
-     bool dfs(int pos);                                                                                             //1718. математика
-     int task_1079(std::string tiles);                                                                              //1079. факториал
+    bool dfs(int pos);                                                                                              //1718. математика
+    int task_1079(std::string tiles);                                                                               //1079. факториал
+    std::string task_2375(std::string pattern);                                                                     //2375. работа со строками
 private:
     std::vector<int> result; //501
         int prev = 0;        //501
