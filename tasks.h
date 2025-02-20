@@ -175,6 +175,8 @@ public:
     bool dfs(int pos);                                                                                              //1718. математика
     int task_1079(std::string tiles);                                                                               //1079. факториал
     std::string task_2375(std::string pattern);                                                                     //2375. работа со строками
+    std::string task_1415(int n, int k);                                                                            //1415. математика
+    std::string task_1980(std::vector<std::string>& nums);                                                          //1980. поиск в строке
 private:
     std::vector<int> result; //501
         int prev = 0;        //501
