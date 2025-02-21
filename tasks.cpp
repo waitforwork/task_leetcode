@@ -3521,3 +3521,31 @@ std::string tasks::task_1980(std::vector<std::string> &nums)
     return result;
 }
 
+
+void tasks::task_1261_1(TreeNod2* root)
+{
+    if (!root) return;
+    recoveredValues.insert(root->val);
+    if (root->left) {
+        root->left->val = 2 * root->val + 1;
+        task_1261_1(root);
+    }
+    if (root->right) {
+        root->right->val = 2 * root->val + 2;
+        task_1261_1(root);
+    }
+}
+
+
+
+void tasks::task_1261_2(TreeNod2 *root)
+{
+    root->val = 0;
+    task_1261_1(root);
+}
+
+bool tasks::task_1261_3(int target)
+{
+    return recoveredValues.count(target);
+}
+
