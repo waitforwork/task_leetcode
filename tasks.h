@@ -188,9 +188,11 @@ TreeNod2(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(rig
 TreeNod2* newRoot;
 std::unordered_set<int> recoveredValues;
 
-    void task_1261_1(TreeNod2* root);                                                       //1261. бинарное дерево
-    void task_1261_2(TreeNod2* root);                                                                                 //1261. бинарное дерево
-    bool task_1261_3(int target);                                                                                     //1261. бинарное дерево
+    void task_1261_1(TreeNod2* root);                                                                               //1261. бинарное дерево
+    void task_1261_2(TreeNod2* root);                                                                               //1261. бинарное дерево
+    bool task_1261_3(int target);                                                                                   //1261. бинарное дерево
+    TreeNode* task_1028(std::string traversal);                                                                     //1028. бинарное дерево
+    void task_1028_2(TreeNode* parent, int lvl);                                                                    //1028. бинарное дерево
 private:
     std::vector<int> result; //501
         int prev = 0;        //501

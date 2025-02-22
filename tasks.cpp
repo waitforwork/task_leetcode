@@ -3548,4 +3548,34 @@ bool tasks::task_1261_3(int target)
 {
     return recoveredValues.count(target);
 }
+std::string s;
+    int idx = 0, level = 0;
+TreeNode *tasks::task_1028(std::string traversal)
+{
+    s = traversal;
+    TreeNode* node = new TreeNode(-1);
+    task_1028_2(node, 0);
+    return node->left;
+}
+
+void tasks::task_1028_2(TreeNode *parent, int lvl)
+{
+    while (idx < s.length() && lvl == level) {
+        int num = 0;
+        while (idx < s.length() && isdigit(s[idx])) {
+            num = num * 10 + (s[idx++] - '0');
+        }
+        TreeNode* node = new TreeNode(num);
+        if (!parent->left)
+            parent->left = node;
+        else
+            parent->right = node;
+        level = 0;
+        while (idx < s.length() && s[idx] == '-') {
+            level++;
+            idx++;
+        }
+        task_1028_2(node, lvl + 1);
+    }
+}
 
