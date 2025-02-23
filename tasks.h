@@ -177,22 +177,16 @@ public:
     std::string task_2375(std::string pattern);                                                                     //2375. работа со строками
     std::string task_1415(int n, int k);                                                                            //1415. математика
     std::string task_1980(std::vector<std::string>& nums);                                                          //1980. поиск в строке
-struct TreeNod2 {
-int val;
-TreeNode *left;
-TreeNode *right;
-TreeNod2() : val(0), left(nullptr), right(nullptr) {}
-TreeNod2(int x) : val(x), left(nullptr), right(nullptr) {}
-TreeNod2(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
-};
-TreeNod2* newRoot;
+TreeNode* newRoot;
 std::unordered_set<int> recoveredValues;
 
-    void task_1261_1(TreeNod2* root);                                                                               //1261. бинарное дерево
-    void task_1261_2(TreeNod2* root);                                                                               //1261. бинарное дерево
+    void task_1261_1(TreeNode* root);                                                                               //1261. бинарное дерево
+    void task_1261_2(TreeNode* root);                                                                               //1261. бинарное дерево
     bool task_1261_3(int target);                                                                                   //1261. бинарное дерево
     TreeNode* task_1028(std::string traversal);                                                                     //1028. бинарное дерево
     void task_1028_2(TreeNode* parent, int lvl);                                                                    //1028. бинарное дерево
+    TreeNode* task_889(std::vector<int>& preorder, std::vector<int>& postorder);                                    //889. бинарное дерево
+
 private:
     std::vector<int> result; //501
         int prev = 0;        //501

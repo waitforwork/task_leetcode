@@ -3522,7 +3522,7 @@ std::string tasks::task_1980(std::vector<std::string> &nums)
 }
 
 
-void tasks::task_1261_1(TreeNod2* root)
+void tasks::task_1261_1(TreeNode* root)
 {
     if (!root) return;
     recoveredValues.insert(root->val);
@@ -3538,7 +3538,7 @@ void tasks::task_1261_1(TreeNod2* root)
 
 
 
-void tasks::task_1261_2(TreeNod2 *root)
+void tasks::task_1261_2(TreeNode *root)
 {
     root->val = 0;
     task_1261_1(root);
@@ -3577,5 +3577,32 @@ void tasks::task_1028_2(TreeNode *parent, int lvl)
         }
         task_1028_2(node, lvl + 1);
     }
+}
+
+TreeNode *tasks::task_889(std::vector<int> &preorder, std::vector<int> &postorder)
+{
+    std::stack<TreeNode*> nodes;
+    TreeNode* root = new TreeNode(preorder[0]);
+    nodes.push(root);
+
+    int preIndex = 1, postIndex = 0;
+
+    while (!nodes.empty()) {
+        TreeNode* current = nodes.top();
+
+        if (current->val == postorder[postIndex]) {
+            nodes.pop();
+            postIndex++;
+        } else {
+            TreeNode* newNode = new TreeNode(preorder[preIndex++]);
+            if (!current->left) {
+                current->left = newNode;
+            } else {
+                current->right = newNode;
+            }
+            nodes.push(newNode);
+        }
+    }
+    return root;
 }
 
