@@ -179,13 +179,14 @@ public:
     std::string task_1980(std::vector<std::string>& nums);                                                          //1980. поиск в строке
 TreeNode* newRoot;
 std::unordered_set<int> recoveredValues;
-
     void task_1261_1(TreeNode* root);                                                                               //1261. бинарное дерево
     void task_1261_2(TreeNode* root);                                                                               //1261. бинарное дерево
     bool task_1261_3(int target);                                                                                   //1261. бинарное дерево
     TreeNode* task_1028(std::string traversal);                                                                     //1028. бинарное дерево
     void task_1028_2(TreeNode* parent, int lvl);                                                                    //1028. бинарное дерево
     TreeNode* task_889(std::vector<int>& preorder, std::vector<int>& postorder);                                    //889. бинарное дерево
+    int task_2467(std::vector<std::vector<int>>& edges, int bob, std::vector<int>& amount);                         //2467. бинарное дерево
+
 
 private:
     std::vector<int> result; //501
