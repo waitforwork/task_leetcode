@@ -3666,3 +3666,20 @@ int tasks::task_2467(std::vector<std::vector<int> > &edges, int bob, std::vector
     return 5;
 }
 
+int tasks::task_1524(std::vector<int> &arr)
+{
+    long long result=0;
+    long long sum=0;
+    for (int i=0;i<arr.size();i++)
+    {
+        sum+=arr[i];
+        // Увеличиваем результат на 1, если текущая сумма нечетная
+        result+=sum%2;
+    }
+    // Добавляем к результату количество подмассивов, которые могут быть образованы
+    // из четных сумм, умноженное на количество нечетных сумм
+    result+=(arr.size()-result)*result;
+    // Возвращаем результат по модулю 1000000007 для предотвращения переполнения
+    return result%1000000007;
+}
+
