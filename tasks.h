@@ -187,6 +187,7 @@ std::unordered_set<int> recoveredValues;
     TreeNode* task_889(std::vector<int>& preorder, std::vector<int>& postorder);                                    //889. бинарное дерево
     int task_2467(std::vector<std::vector<int>>& edges, int bob, std::vector<int>& amount);                         //2467. бинарное дерево
     int task_1524(std::vector<int>& arr);                                                                           //1524. поиск в векторе
+    int task_1749(std::vector<int>& nums);                                                                          //1749. математика
 
 private:
     std::vector<int> result; //501

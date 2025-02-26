@@ -3683,3 +3683,14 @@ int tasks::task_1524(std::vector<int> &arr)
     return result%1000000007;
 }
 
+int tasks::task_1749(std::vector<int> &nums)
+{
+    int sum = 0, minSum = 0, maxSum = 0;
+    for (int num : nums) {
+        sum += num;
+        if (sum > maxSum) maxSum = sum;
+        if (sum < minSum) minSum = sum;
+    }
+    return abs(maxSum - minSum);
+}
+
