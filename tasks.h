@@ -188,6 +188,7 @@ std::unordered_set<int> recoveredValues;
     int task_2467(std::vector<std::vector<int>>& edges, int bob, std::vector<int>& amount);                         //2467. бинарное дерево
     int task_1524(std::vector<int>& arr);                                                                           //1524. поиск в векторе
     int task_1749(std::vector<int>& nums);                                                                          //1749. математика
+    int task_873(std::vector<int>& arr);                                                                            //873. число фибаначи
 
 private:
     std::vector<int> result; //501

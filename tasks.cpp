@@ -3694,3 +3694,37 @@ int tasks::task_1749(std::vector<int> &nums)
     return abs(maxSum - minSum);
 }
 
+int tasks::task_873(std::vector<int> &arr)
+{
+    int n = arr.size();
+    // Инициализируем двумерный вектор dp размером n x n, заполненный нулями
+    std::vector<std::vector<int>> dp(n, std::vector<int>(n, 0));
+    int maxLen = 0;
+    // Проходим по всем элементам массива, начиная с третьего (curr = 2)
+    for (int curr = 2; curr < n; curr++) {
+        // Устанавливаем начальные индексы для поиска пар
+        int start = 0, end = curr - 1;
+        // Пока начальный индекс меньше конечного
+        while (start < end) {
+            // Вычисляем сумму пары элементов на позициях start и end
+            int pairSum = arr[start] + arr[end];
+            // Если сумма пары больше текущего элемента, сдвигаем конечный индекс влево
+            if (pairSum > arr[curr]) {end--;}
+            // Если сумма пары меньше текущего элемента, сдвигаем начальный индекс вправо
+            else if (pairSum < arr[curr]) {start++;}
+            // Если сумма пары равна текущему элементу
+            else {
+                // Обновляем значение dp для текущей пары
+                dp[end][curr] = dp[start][end] + 1;
+                // Обновляем максимальную длину, если найденная длина больше
+                maxLen = std::max(dp[end][curr], maxLen);
+                // Сдвигаем оба индекса
+                end--;
+                start++;
+            }
+        }
+    }
+    // Возвращаем максимальную длину последовательности, увеличенную на 2, если она больше 0
+    return maxLen == 0 ? 0 : maxLen + 2;
+}
+
