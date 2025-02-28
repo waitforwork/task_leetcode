@@ -189,6 +189,8 @@ std::unordered_set<int> recoveredValues;
     int task_1524(std::vector<int>& arr);                                                                           //1524. поиск в векторе
     int task_1749(std::vector<int>& nums);                                                                          //1749. математика
     int task_873(std::vector<int>& arr);                                                                            //873. число фибаначи
+    std::string task_1092(std::string str1, std::string str2);                                                      //1092. поиск в строках
+
 
 private:
     std::vector<int> result; //501
