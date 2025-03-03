@@ -3843,3 +3843,28 @@ std::vector<std::vector<int> > tasks::task_2570(std::vector<std::vector<int> > &
     return result;
 }
 
+std::vector<int> tasks::task_2161(std::vector<int> &nums, int pivot)
+{
+    std::vector<int>res(nums.size());
+    int c=0;
+    int pt=0;
+    for(int i=0;i<nums.size();i++) {
+        if(nums[i]<pivot) {
+            res[pt++]=nums[i];
+        }
+        else if(nums[i]==pivot) {
+            c++;
+        }
+    }
+    while(c--) {
+        res[pt++]=pivot;//equal to pivot
+    }
+    for(int i=0;i<nums.size();i++) {
+        if(nums[i]>pivot) {
+            res[pt]=nums[i];
+            pt++;
+        }
+    }
+    return res;
+}
+
