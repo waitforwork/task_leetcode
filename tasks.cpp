@@ -3868,3 +3868,14 @@ std::vector<int> tasks::task_2161(std::vector<int> &nums, int pivot)
     return res;
 }
 
+bool tasks::task_1780(int n)
+{
+    while (n>0) {
+        //единственное число, которое нас не устроит это 2
+        if (n%3 == 2) {
+            return false;
+        }
+        n /= 3;
+    }
+    return true;
+}
