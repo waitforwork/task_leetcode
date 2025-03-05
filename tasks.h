@@ -194,6 +194,7 @@ std::unordered_set<int> recoveredValues;
     std::vector<std::vector<int>> task_2570(std::vector<std::vector<int>>& nums1, std::vector<std::vector<int>>& nums2);    //2570. поиск по векторам
     std::vector<int> task_2161(std::vector<int>& nums, int pivot);                                                  //2161. поиск в векторе
     bool task_1780(int n);                                                                                          //1780. делим на 3
+    long long task_2579(int n);                                                                                     //2579. математика
 
 
 private:

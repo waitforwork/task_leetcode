@@ -3879,3 +3879,13 @@ bool tasks::task_1780(int n)
     }
     return true;
 }
+
+long long tasks::task_2579(int n)
+{
+    long long res = 1;
+    if (n==1) {return res;}
+    for (int i = 1; i < n; i++) {
+        res += 4*i;
+    }
+    return res;
+}
