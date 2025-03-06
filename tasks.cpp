@@ -3889,3 +3889,20 @@ long long tasks::task_2579(int n)
     }
     return res;
 }
+
+std::vector<int> tasks::task_2965(std::vector<std::vector<int> > &grid)
+{
+    int a, n = grid.size();
+    std::vector<int> num_freq(n*n + 1, 0);
+    for(std::vector<int> row : grid) {
+        for(int num : row) {
+            if(num_freq[num] == 1)
+                a = num;
+            num_freq[num]++;
+        }
+    }
+    for(int num = 1; num <= n*n; num++)
+        if(num_freq[num] == 0)
+            return {a, num};
+    return {-1, -1};
+}
