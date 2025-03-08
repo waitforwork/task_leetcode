@@ -3906,3 +3906,16 @@ std::vector<int> tasks::task_2965(std::vector<std::vector<int> > &grid)
             return {a, num};
     return {-1, -1};
 }
+
+int tasks::task_2379(std::string blocks, int k)
+{
+    int black_count = 0, ans = INT_MAX;
+
+    for (int i = 0; i < blocks.size(); i++) {
+        if (i - k >= 0 && blocks[i - k] == 'B') black_count--;
+        if (blocks[i] == 'B') black_count++;
+        ans = std::min(ans, k - black_count);
+    }
+
+    return ans;
+}
