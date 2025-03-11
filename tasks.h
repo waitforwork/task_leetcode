@@ -199,6 +199,7 @@ std::unordered_set<int> recoveredValues;
     int task_2379(std::string blocks, int k);                                                                       //2379. математика
     int task_3208(std::vector<int>& colors, int k);                                                                 //3208. поиск в векторе
     long long task_3306(std::string word, int k);                                                                   //3306. поиск в тексте
+    int task_1358(std::string s);                                                                                   //1358. поиск в строке
 
 private:
     std::vector<int> result; //501
