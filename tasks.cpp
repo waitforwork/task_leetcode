@@ -3994,3 +3994,13 @@ int tasks::task_1358(std::string s)
     }
     return count;
 }
+
+int tasks::task_2529(std::vector<int> &nums)
+{
+    int plus=0,minus=0;
+    for (auto i : nums) {
+        if (i<0) minus++;
+        if (i>0) plus++;
+    }
+    return (plus>=minus) ? plus : minus;
+}
