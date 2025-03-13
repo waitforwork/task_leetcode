@@ -4004,3 +4004,23 @@ int tasks::task_2529(std::vector<int> &nums)
     }
     return (plus>=minus) ? plus : minus;
 }
+
+int tasks::task_3356(std::vector<int> &nums, std::vector<std::vector<int> > &queries)
+{
+    const int n=nums.size(), m=queries.size();
+    std::vector<int> freq(n+1);
+    int op=0, k=0;
+    for(int i=0; i<n; i++){
+        // Внутренний цикл выполняется, пока количество операций меньше разности
+        // между текущим элементом nums[i] и значением freq[i]
+        for( ; op < nums[i]-freq[i]; k++){
+            if (k>=m) return -1;
+            const int l=queries[k][0], r=queries[k][1], v=queries[k][2];
+            if (r<i) continue;
+            freq[std::max(l, i)]+=v;
+            freq[r+1]-=v;
+        }
+        op+=freq[i];
+    }
+    return k;
+}
