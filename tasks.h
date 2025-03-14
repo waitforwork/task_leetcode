@@ -202,6 +202,7 @@ std::unordered_set<int> recoveredValues;
     int task_1358(std::string s);                                                                                   //1358. поиск в строке
     int task_2529(std::vector<int>& nums);                                                                          //2529. математика
     int task_3356(std::vector<int> &nums, std::vector<std::vector<int>> &queries);                                  //3356. математика
+    int task_2226(std::vector<int>& candies, long long k);                                                          //2226. математика
 
 private:
     std::vector<int> result; //501
