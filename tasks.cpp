@@ -4028,19 +4028,46 @@ int tasks::task_3356(std::vector<int> &nums, std::vector<std::vector<int> > &que
 int tasks::task_2226(std::vector<int> &candies, long long k)
 {
     long long left = 1, right = *max_element(candies.begin(), candies.end());
-        int result=0;
-        while (left<=right) {
-            long long mid = left+(right-left)/2;
-            long long children_count = 0;
-            for ( auto candi : candies) {
-                children_count += candi/mid;
-            }
-            if (children_count >= k) {
-                result=mid;
-                left = mid+1;
-            } else {
-                right = mid-1;
-            }
+    int result=0;
+    while (left<=right) {
+        long long mid = left+(right-left)/2;
+        long long children_count = 0;
+        for ( auto candi : candies) {
+            children_count += candi/mid;
         }
-        return result;
+        if (children_count >= k) {
+            result=mid;
+            left = mid+1;
+        } else {
+            right = mid-1;
+        }
+    }
+    return result;
+}
+
+bool task_2560_2(std::vector<int> &nums, int k, int capability) {
+    int count=0;
+    for(int i=0; i<nums.size(); i++) {
+        if (nums[i]<=capability) {
+            count++;
+            i++;
+        }
+        if (count>=k) return true;
+    }
+    return false;
+}
+
+int tasks::task_2560(std::vector<int> &nums, int k)
+{
+    int left = *min_element(nums.begin(), nums.end());
+    int right = *max_element(nums.begin(), nums.end());
+    while (left < right) {
+        int mid = left +(right-left)/2;
+        if (task_2560_2(nums,k,mid)) {
+            right = mid;
+        } else {
+            left = mid + 1;
+        }
+    }
+    return left;
 }
