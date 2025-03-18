@@ -206,6 +206,7 @@ std::unordered_set<int> recoveredValues;
     int task_2560(std::vector<int>& nums, int k);                                                                   //2560. математика
     long long task_2594(std::vector<int>& ranks, int cars);                                                         //2594. поиск в векторе
     bool task_2206(std::vector<int>& nums);                                                                         //2206. математика
+    int task_2401(std::vector<int>& nums);                                                                          //2401. бинарное сложение
 private:
     std::vector<int> result; //501
         int prev = 0;        //501
