@@ -4126,3 +4126,17 @@ int tasks::task_2401(std::vector<int> &nums)
 
     return max_length;
 }
+
+int tasks::task_3191(std::vector<int> &nums)
+{
+    int count = 0;
+    for (int i = 0;i<nums.size() - 2; i++) {
+        if (nums[i] == 0) {
+            nums[i] ^= 1;
+            nums[i+1] ^= 1;
+            nums[i+2] ^= 1;
+            count++;
+        }
+    }
+    return (nums[nums.size()-2] == 1 && nums[nums.size()-1] == 1) ? count : -1;
+}
