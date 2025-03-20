@@ -4140,3 +4140,46 @@ int tasks::task_3191(std::vector<int> &nums)
     }
     return (nums[nums.size()-2] == 1 && nums[nums.size()-1] == 1) ? count : -1;
 }
+
+std::vector<int> parent, minPathCost;
+int findRoot(int node) {
+    if (parent[node] != node) {
+        parent[node] = findRoot(parent[node]); // Path compression
+    }
+    return parent[node];
+}
+
+std::vector<int> tasks::task_3108(int n, std::vector<std::vector<int> > &edges, std::vector<std::vector<int> > &query)
+{
+    parent.resize(n);
+    minPathCost.assign(n, -1);
+    for (int i = 0; i < n; i++) parent[i] = i;
+
+    for (auto& edge : edges) {
+        int source = edge[0], target = edge[1], weight = edge[2];
+        int sourceRoot = findRoot(source);
+        int targetRoot = findRoot(target);
+
+        if (minPathCost[sourceRoot] == -1) minPathCost[sourceRoot] = weight;
+        else minPathCost[sourceRoot] &= weight;
+
+        if (minPathCost[targetRoot] == -1) minPathCost[targetRoot] = weight;
+        else minPathCost[targetRoot] &= weight;
+
+        if (sourceRoot != targetRoot) {
+            parent[sourceRoot] = targetRoot;
+            minPathCost[targetRoot] &= minPathCost[sourceRoot];
+        }
+    }
+
+    std::vector<int> result;
+    for (auto& q : query) {
+        int start = q[0], end = q[1];
+
+        if (start == end) result.push_back(0);
+        else if (findRoot(start) != findRoot(end)) result.push_back(-1);
+        else result.push_back(minPathCost[findRoot(start)]);
+    }
+
+    return result;
+}
