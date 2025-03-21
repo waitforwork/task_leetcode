@@ -4183,3 +4183,40 @@ std::vector<int> tasks::task_3108(int n, std::vector<std::vector<int> > &edges, 
 
     return result;
 }
+
+std::vector<std::string> tasks::task_2115(std::vector<std::string> &recipes, std::vector<std::vector<std::string> > &ingredients, std::vector<std::string> &supplies)
+{
+    std::unordered_map<std::string, std::vector<std::string>> graph; // Объявляем граф, который будет хранить рецепты и их ингредиенты
+        std::unordered_map<std::string, int> indegree;// Объявляем карту для хранения количества входящих зависимостей (ингредиентов) для каждого рецепта
+        std::unordered_set<std::string> available(supplies.begin(), supplies.end());// Создаем множество доступных ингредиентов из вектора supplies
+        std::vector<std::string> result;// Вектор для хранения результатов (рецептов, которые можно приготовить)
+
+        // Step 1: Build graph and indegree map
+        for (int i = 0; i < recipes.size(); i++) {
+            std::string recipe = recipes[i];
+            indegree[recipe] = ingredients[i].size();// Устанавливаем количество необходимых ингредиентов для рецепта
+
+            for (std::string& ing : ingredients[i]) {
+                graph[ing].push_back(recipe);// Добавляем рецепт в список рецептов, которые зависят от данного ингредиента
+            }
+        }
+
+        // Step 2: Perform BFS
+        std::queue<std::string> q;//(supplies.begin(), supplies.end());// Инициализируем очередь доступными ингредиентами
+
+        while (!q.empty()) {// Пока очередь не пуста
+            std::string item = q.front();
+            q.pop();
+            if (!graph.count(item)) continue;
+
+            for (std::string& recipe : graph[item]) {
+                indegree[recipe]--;
+                if (indegree[recipe] == 0) {
+                    result.push_back(recipe);
+                    q.push(recipe);
+                }
+            }
+        }
+
+        return result;
+}

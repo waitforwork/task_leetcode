@@ -209,6 +209,8 @@ std::unordered_set<int> recoveredValues;
     int task_2401(std::vector<int>& nums);                                                                          //2401. бинарное сложение
     int task_3191(std::vector<int>& nums);                                                                          //3191. бинарное сложение
     std::vector<int> task_3108(int n, std::vector<std::vector<int>>& edges, std::vector<std::vector<int>>& query);  //3108. математика и бинарное сложение
+    std::vector<std::string> task_2115(std::vector<std::string>& recipes,
+        std::vector<std::vector<std::string>>& ingredients, std::vector<std::string>& supplies);                    //2115. бинарное дерево
 private:
     std::vector<int> result; //501
         int prev = 0;        //501
