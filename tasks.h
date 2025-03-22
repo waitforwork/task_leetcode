@@ -10,6 +10,7 @@
 #include <cmath>
 #include <bitset>
 #include <numeric> //для iota
+#include <functional>
 
 #include <stdio.h>
 #include <stdint.h>
@@ -211,6 +212,7 @@ std::unordered_set<int> recoveredValues;
     std::vector<int> task_3108(int n, std::vector<std::vector<int>>& edges, std::vector<std::vector<int>>& query);  //3108. математика и бинарное сложение
     std::vector<std::string> task_2115(std::vector<std::string>& recipes,
         std::vector<std::vector<std::string>>& ingredients, std::vector<std::string>& supplies);                    //2115. бинарное дерево
+    int task_2685(int n, std::vector<std::vector<int>>& edges);                                                     //2685. математика
 private:
     std::vector<int> result; //501
         int prev = 0;        //501

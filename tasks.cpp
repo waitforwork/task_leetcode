@@ -4220,3 +4220,58 @@ std::vector<std::string> tasks::task_2115(std::vector<std::string> &recipes, std
 
         return result;
 }
+
+int tasks::task_2685(int n, std::vector<std::vector<int> > &edges)
+{
+    std::vector<int> parent(n), rank(n, 0);
+    iota(parent.begin(), parent.end(), 0);
+
+    std::function<int(int)> find = [&](int x) {
+        if (parent[x] != x) {
+            parent[x] = find(parent[x]);
+        }
+        return parent[x];
+    };
+
+    auto unionSets = [&](int x, int y) {
+        int rootX = find(x);
+        int rootY = find(y);
+        if (rootX == rootY) return;
+        if (rank[rootX] < rank[rootY]) {
+            parent[rootX] = rootY;
+        } else if (rank[rootX] > rank[rootY]) {
+            parent[rootY] = rootX;
+        } else {
+            parent[rootY] = rootX;
+            rank[rootX]++;
+        }
+    };
+
+    for (auto& edge : edges) {
+        unionSets(edge[0], edge[1]);
+    }
+
+    std::unordered_map<int, std::unordered_set<int>> componentVertices;
+    std::unordered_map<int, int> componentEdges;
+
+    for (int i = 0; i < n; ++i) {
+        int root = find(i);
+        componentVertices[root].insert(i);
+    }
+
+    for (auto& edge : edges) {
+        int root = find(edge[0]);
+        componentEdges[root]++;
+    }
+
+    int completeCount = 0;
+    for (auto& [root, vertices] : componentVertices) {
+        int numVertices = vertices.size();
+        int expectedEdges = numVertices * (numVertices - 1) / 2;
+        if (componentEdges[root] == expectedEdges) {
+            completeCount++;
+        }
+    }
+
+    return completeCount;
+}
