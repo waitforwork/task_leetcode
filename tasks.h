@@ -214,6 +214,7 @@ std::unordered_set<int> recoveredValues;
         std::vector<std::vector<std::string>>& ingredients, std::vector<std::string>& supplies);                    //2115. бинарное дерево
     int task_2685(int n, std::vector<std::vector<int>>& edges);                                                     //2685. математика
     int task_1976(int n, std::vector<std::vector<int>>& roads);                                                     //1976. построение связей
+    int task_3169(int days, std::vector<std::vector<int>>& meetings);                                               //3169. математика
 private:
     std::vector<int> result; //501
         int prev = 0;        //501

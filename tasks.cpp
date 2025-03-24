@@ -4315,3 +4315,38 @@ int tasks::task_1976(int n, std::vector<std::vector<int> > &roads)
 
     return ways[n - 1];
 }
+
+int tasks::task_3169(int days, std::vector<std::vector<int> > &meetings)
+{
+    // Сортируем встречи по времени начала
+    std::sort(meetings.begin(), meetings.end());
+
+    int meetingDaysCount = 0; // Переменная для подсчета количества дней, занятых встречами
+    int currentStart = -1, currentEnd = -1; // Переменные для хранения начала и конца текущего диапазона встреч
+
+    // Проходим по всем встречам
+    for (const auto& meeting : meetings) {
+        int start = meeting[0], end = meeting[1]; // Извлекаем время начала и конца встречи
+        // Если начало текущей встречи больше конца последней встречи
+        if (start > currentEnd) {
+            // Если у нас уже была встреча, добавляем дни к общему счетчику
+            if (currentEnd != -1) {
+                meetingDaysCount += currentEnd - currentStart + 1; // Увеличиваем счетчик на количество дней между текущим началом и концом
+            }
+            // Обновляем текущие начало и конец на новые значения
+            currentStart = start;
+            currentEnd = end;
+        } else {
+            // Если встречи пересекаются, обновляем конец, если это необходимо
+            currentEnd = std::max(currentEnd, end);
+        }
+    }
+
+    // Если есть активные встречи, добавляем их дни к общему счетчику
+    if (currentEnd != -1) {
+        meetingDaysCount += currentEnd - currentStart + 1; // Увеличиваем счетчик на количество дней для последней встречи
+    }
+
+    // Возвращаем количество свободных дней, вычитая занятые дни из общего количества дней
+    return days - meetingDaysCount;
+}
