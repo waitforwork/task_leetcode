@@ -4350,3 +4350,43 @@ int tasks::task_3169(int days, std::vector<std::vector<int> > &meetings)
     // Возвращаем количество свободных дней, вычитая занятые дни из общего количества дней
     return days - meetingDaysCount;
 }
+
+bool tasks::task_3394(int n, std::vector<std::vector<int> > &rectangles)
+{
+    // Лямбда-функция для проверки валидности разреза
+    auto isValidCut = [&](int sortIndex, int start, int end) {
+        // Сортируем прямоугольники по указанному индексу (ширина или высота)
+        sort(rectangles.begin(), rectangles.end(), [&](const std::vector<int>& a, const std::vector<int>& b) {
+            return a[sortIndex] < b[sortIndex];
+        });
+
+        // Инициализируем текущие границы интервала
+        int currentStart = rectangles[0][start];
+        int currentEnd = rectangles[0][end];
+        int intervals = 0; // Счетчик интервалов
+
+        // Проходим по всем прямоугольникам
+        for (const auto& rect : rectangles) {
+            // Если текущий прямоугольник пересекается с текущим интервалом
+            if (rect[start] < currentEnd) {
+                // Обновляем конец интервала
+                currentEnd = std::max(rect[end], currentEnd);
+            } else {
+                // Если нет пересечения, увеличиваем счетчик интервалов
+                intervals++;
+                // Обновляем границы нового интервала
+                currentStart = rect[start];
+                currentEnd = rect[end];
+            }
+        }
+        // Увеличиваем счетчик интервалов на 1 для последнего интервала
+        intervals++;
+
+        // Возвращаем true, если количество интервалов больше 2
+        return intervals > 2;
+    };
+
+    // Проверяем валидность разрезов для двух случаев: по ширине и по высоте
+    return isValidCut(0, 0, 2) || isValidCut(1, 1, 3);
+}
+
