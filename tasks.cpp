@@ -4390,3 +4390,25 @@ bool tasks::task_3394(int n, std::vector<std::vector<int> > &rectangles)
     return isValidCut(0, 0, 2) || isValidCut(1, 1, 3);
 }
 
+int tasks::task_2033(std::vector<std::vector<int> > &grid, int x)
+{
+    std::vector<int> values;
+    for (const auto& row : grid) {
+        for (int val : row) {
+            values.push_back(val);
+        }
+    }
+    sort(values.begin(), values.end());
+    for (int val : values) {
+        if (abs(val - values[0]) % x != 0) {
+            return -1;
+        }
+    }
+    int median = values[values.size() / 2];
+    int operations = 0;
+    for (int val : values) {
+        operations += abs(val - median) / x;
+    }
+    return operations;
+}
+
