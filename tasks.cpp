@@ -4412,3 +4412,57 @@ int tasks::task_2033(std::vector<std::vector<int> > &grid, int x)
     return operations;
 }
 
+int tasks::task_2780(std::vector<int> &nums)
+{
+    // Определяем лямбда-функцию для поиска доминирующего элемента в массиве
+    auto find_dominant_element = [](const std::vector<int>& arr) {
+        int candidate = -1; // Кандидат на доминирующий элемент
+        int count = 0;      // Счетчик для отслеживания количества вхождений кандидата
+        // Проходим по всем элементам массива
+        for (int num : arr) {
+            // Если счетчик равен 0, выбираем текущий элемент как кандидата
+            if (count == 0) {
+                candidate = num;
+                count = 1; // Устанавливаем счетчик на 1
+            }
+            // Если текущий элемент равен кандидату, увеличиваем счетчик
+            else if (num == candidate) {
+                count++;
+            }
+            // Если текущий элемент не равен кандидату, уменьшаем счетчик
+            else {
+                count--;
+            }
+        }
+        // Подсчитываем количество вхождений кандидата в массив
+        count = count_if(arr.begin(), arr.end(), [&](int num) { return num == candidate; });
+        // Проверяем, является ли кандидат доминирующим элементом (больше половины массива)
+        return (count > arr.size() / 2) ? candidate : -1;
+    };
+    // Вызываем функцию для нахождения доминирующего элемента в массиве nums
+    int dominant = find_dominant_element(nums);
+    // Если доминирующий элемент не найден, возвращаем -1
+    if (dominant == -1) return -1;
+    // Инициализируем счетчик для левой части массива
+    int left_count = 0;
+    // Подсчитываем общее количество доминирующего элемента в массиве
+    int total_dominant_count = count(nums.begin(), nums.end(), dominant);
+    // Проходим по массиву, исключая последний элемент
+    for (int i = 0; i < nums.size() - 1; i++) {
+        // Если текущий элемент равен доминирующему, увеличиваем счетчик левой части
+        if (nums[i] == dominant) {
+            left_count++;
+        }
+        // Количество доминирующего элемента в левой и правой частях
+        int left_subarray_count = left_count;
+        int right_subarray_count = total_dominant_count - left_count;
+        // Проверяем, удовлетворяют ли обе части условиям доминирования
+        if (left_subarray_count > (i + 1) / 2 &&
+                right_subarray_count > (nums.size() - i - 1) / 2) {
+            return i; // Возвращаем индекс, если условия выполнены
+        }
+    }
+    // Если ни один индекс не удовлетворяет условиям, возвращаем -1
+    return -1;
+}
+

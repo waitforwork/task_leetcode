@@ -217,6 +217,8 @@ std::unordered_set<int> recoveredValues;
     int task_3169(int days, std::vector<std::vector<int>>& meetings);                                               //3169. математика
     bool task_3394(int n, std::vector<std::vector<int>>& rectangles);                                               //3394. математика
     int task_2033(std::vector<std::vector<int>>& grid, int x);                                                      //2033. математика
+    int task_2780(std::vector<int> &nums);                                                                          //2780. массив, хэш-таблица, сортировка
+
 private:
     std::vector<int> result; //501
         int prev = 0;        //501
