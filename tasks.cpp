@@ -4466,3 +4466,54 @@ int tasks::task_2780(std::vector<int> &nums)
     return -1;
 }
 
+std::vector<int> tasks::task_2503(std::vector<std::vector<int> > &grid, std::vector<int> &queries)
+{
+    // Получаем количество строк и столбцов в сетке (grid)
+    int rows = grid.size(), cols = grid[0].size();
+    // Вектор для хранения запросов в виде пар (значение запроса, индекс запроса)
+    std::vector<std::pair<int, int>> sortedQueries;
+    // Заполняем sortedQueries значениями из queries и их индексами
+    for (int i = 0; i < queries.size(); i++) {
+        sortedQueries.emplace_back(queries[i], i);
+    }
+    // Сортируем запросы по их значениям
+    sort(sortedQueries.begin(), sortedQueries.end());
+    // Вектор для хранения результатов для каждого запроса, инициализируем нулями
+    std::vector<int> result(queries.size(), 0);
+    // Минимальная куча для хранения пар (значение, позиция) с наименьшим значением вверху
+    std::priority_queue<std::pair<int, std::pair<int, int>>, std::vector<std::pair<int, std::pair<int, int>>>, std::greater<>> minHeap;
+    // Вектор для отслеживания посещенных ячеек в сетке
+    std::vector<std::vector<bool>> visited(rows, std::vector<bool>(cols, false));
+    // Начинаем с верхнего левого угла сетки
+    minHeap.emplace(grid[0][0], std::make_pair(0, 0));
+    visited[0][0] = true; // Отмечаем верхний левый угол как посещенный
+    int points = 0; // Счетчик для количества посещенных ячеек
+    // Направления для перемещения по сетке (вправо, вниз, влево, вверх)
+    std::vector<std::pair<int, int>> directions = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+    // Обрабатываем каждый запрос в порядке возрастания значений
+    for (auto& [queryVal, queryIdx] : sortedQueries) {
+        // Пока минимальная куча не пуста и наименьшее значение меньше текущего запроса
+        while (!minHeap.empty() && minHeap.top().first < queryVal) {
+            // Извлекаем наименьшее значение и его позицию
+            auto [val, pos] = minHeap.top();
+                    minHeap.pop(); // Удаляем элемент из кучи
+                    int row = pos.first, col = pos.second; // Получаем координаты ячейки
+                    points++; // Увеличиваем счетчик посещенных ячеек
+                    // Проверяем все четыре направления (вправо, вниз, влево, вверх)
+                    for (auto& [dr, dc] : directions) {
+                int nr = row + dr, nc = col + dc; // Новые координаты
+                // Проверяем, находятся ли новые координаты в пределах сетки и не посещены ли они
+                if (nr >= 0 && nr < rows && nc >= 0 && nc < cols && !visited[nr][nc]) {
+                    // Добавляем новую ячейку в минимальную кучу
+                    minHeap.emplace(grid[nr][nc], std::make_pair(nr, nc));
+                    visited[nr][nc] = true; // Отмечаем ячейку как посещенную
+                }
+            }
+        }
+        // Сохраняем количество посещенных ячеек для текущего запроса
+        result[queryIdx] = points;
+    }
+    // Возвращаем вектор с результатами для всех запросов
+    return result;
+}
+

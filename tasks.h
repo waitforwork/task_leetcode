@@ -218,6 +218,7 @@ std::unordered_set<int> recoveredValues;
     bool task_3394(int n, std::vector<std::vector<int>>& rectangles);                                               //3394. математика
     int task_2033(std::vector<std::vector<int>>& grid, int x);                                                      //2033. математика
     int task_2780(std::vector<int> &nums);                                                                          //2780. массив, хэш-таблица, сортировка
+    std::vector<int> task_2503(std::vector<std::vector<int>>& grid, std::vector<int>& queries);                     //2503. массивы, сортировка, матрица, очередь
 
 private:
     std::vector<int> result; //501
