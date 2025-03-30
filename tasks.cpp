@@ -4517,3 +4517,24 @@ std::vector<int> tasks::task_2503(std::vector<std::vector<int> > &grid, std::vec
     return result;
 }
 
+std::vector<int> tasks::task_763(std::string s)
+{
+    std::unordered_map<char, int> last_occurrence;
+    for (int i = 0; i < s.size(); i++) {
+        last_occurrence[s[i]] = i;
+    }
+
+    std::vector<int> result;
+    int start = 0, end = 0;
+
+    for (int i = 0; i < s.size(); i++) {
+        end = std::max(end, last_occurrence[s[i]]);
+        if (i == end) {
+            result.push_back(end - start + 1);
+            start = i + 1;
+        }
+    }
+
+    return result;
+}
+
