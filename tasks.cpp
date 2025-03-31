@@ -4538,3 +4538,26 @@ std::vector<int> tasks::task_763(std::string s)
     return result;
 }
 
+long long tasks::task_2551(std::vector<int> &weights, int k)
+{
+    // Проверяем, равно ли значение k единице
+    if (k == 1) {
+        return 0;
+    }
+    // Создаем вектор для хранения сумм пар соседних элементов
+    std::vector<int> pair_sums;
+    // Проходим по вектору weights, чтобы вычислить суммы пар соседних элементов
+    for (size_t i = 0; i < weights.size() - 1; ++i) {
+        // Добавляем сумму текущего элемента и следующего в вектор pair_sums
+        pair_sums.push_back(weights[i] + weights[i + 1]);
+    }
+    // Сортируем вектор pair_sums для упрощения поиска минимальных и максимальных значений
+    sort(pair_sums.begin(), pair_sums.end());
+    // Вычисляем минимальную сумму из первых (k - 1) элементов в отсортированном векторе
+    long long min_score = accumulate(pair_sums.begin(), pair_sums.begin() + (k - 1), 0LL);
+    // Вычисляем максимальную сумму из последних (k - 1) элементов в отсортированном векторе
+    long long max_score = accumulate(pair_sums.end() - (k - 1), pair_sums.end(), 0LL);
+    // Возвращаем разницу между максимальной и минимальной суммами
+    return max_score - min_score;
+}
+

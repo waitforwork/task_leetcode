@@ -220,6 +220,7 @@ std::unordered_set<int> recoveredValues;
     int task_2780(std::vector<int> &nums);                                                                          //2780. массив, хэш-таблица, сортировка
     std::vector<int> task_2503(std::vector<std::vector<int>>& grid, std::vector<int>& queries);                     //2503. массивы, сортировка, матрица, очередь
     std::vector<int> task_763(std::string s);                                                                       //763. хеш таблицы, строка, 2 указателя
+    long long task_2551(std::vector<int>& weights, int k);                                                          //2551. массив, сортировка, куча(очередь)
 
 private:
     std::vector<int> result; //501
