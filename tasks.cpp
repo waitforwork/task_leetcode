@@ -4586,3 +4586,25 @@ long long tasks::task_2140(std::vector<std::vector<int> > &questions)
     return dp[0];
 }
 
+long long tasks::task_2873(std::vector<int> &nums)
+{
+    const int n = nums.size();
+    // L[i] будет хранить максимальное значение в nums[0] до nums[i]
+    // R[i] будет хранить максимальное значение в nums[n-1] до nums[i]
+    std::vector<int> L(n, 0), R(n, 0);
+    for (int i = 0; i < n - 1; i++) {
+        // L[i+1] будет максимальным значением между L[i] и nums[i]
+        L[i + 1] = std::max(L[i], nums[i]);
+        // R[n-2-i] будет максимальным значением между R[n-1-i] и nums[n-1-i]
+        R[n - 2 - i] = std::max(R[n - 1 - i], nums[n - 1 - i]);
+    }
+    long long ans = 0;
+    // Проходим по элементам массива nums, начиная с 1 и заканчивая n-2
+    for (int j = 1; j < n - 1; j++) {
+        // Вычисляем значение (L[j] - nums[j]) * R[j] и обновляем ans, если оно больше текущего значения ans
+        ans = std::max(ans, (long long)(L[j] - nums[j]) * R[j]);
+    }
+    // Возвращаем максимальное значение ans
+    return ans;
+}
+

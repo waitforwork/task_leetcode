@@ -222,6 +222,7 @@ std::unordered_set<int> recoveredValues;
     std::vector<int> task_763(std::string s);                                                                       //763. хеш таблицы, строка, 2 указателя
     long long task_2551(std::vector<int>& weights, int k);                                                          //2551. массив, сортировка, куча(очередь)
     long long task_2140(std::vector<std::vector<int>>& questions);                                                  //2140. массив
+    long long task_2873(std::vector<int>& nums);                                                                    //2873. массив
 
 private:
     std::vector<int> result; //501
