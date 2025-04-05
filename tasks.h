@@ -224,6 +224,7 @@ std::unordered_set<int> recoveredValues;
     long long task_2140(std::vector<std::vector<int>>& questions);                                                  //2140. массив
     long long task_2873(std::vector<int>& nums);                                                                    //2873. массив
     long long task_2874(std::vector<int>& nums);                                                                    //2874. массив
+    int task_1863(std::vector<int>& nums);                                                                          //1863. побитовое, массив
 
 private:
     std::vector<int> result; //501
