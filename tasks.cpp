@@ -4707,4 +4707,37 @@ int tasks::task_3396(std::vector<int> &nums)
     return 0;
 }
 
+int tasks::task_3375(std::vector<int> &nums, int k)
+{
+    std::unordered_map<int,int> mpp;
+    for (int i : nums)
+        if (i < k) return -1;
+        else if (i > k) mpp[i]++;
+    return mpp.size();
+}
+
+int tasks::task_2483(int low, int high)
+{
+    int count = 0; // 🍥 Count of symmetric integers (chakra-balanced)
+
+    for (int num = low; num <= high; ++num) {
+        std::string str = std::to_string(num);
+        int len = str.length();
+        if (len % 2 != 0) continue;
+
+        int half = len / 2;
+        int leftSum = 0, rightSum = 0;
+        for (int i = 0; i < half; ++i) {
+            leftSum += str[i] - '0'; // Convert char to int
+        }
+        for (int i = half; i < len; ++i) {
+            rightSum += str[i] - '0';
+        }
+        if (leftSum == rightSum) {
+            count++;
+        }
+    }
+    return count;
+}
+
 
