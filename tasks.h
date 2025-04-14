@@ -230,6 +230,7 @@ std::unordered_set<int> recoveredValues;
     int task_3396(std::vector<int>& nums);                                                                          //3396. массивы, хэш таблица
     int task_3375(std::vector<int>& nums, int k);                                                                   //3375. массивы, хэш таблица
     int task_2483(int low, int high);                                                                               //2483. математика
+    int task_1534(std::vector<int>& arr, int a, int b, int c);                                                      //1534. математика
 private:
     std::vector<int> result; //501
         int prev = 0;        //501
