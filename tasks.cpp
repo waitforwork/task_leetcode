@@ -4755,4 +4755,16 @@ int tasks::task_1534(std::vector<int> &arr, int a, int b, int c)
     return good;
 }
 
+long long tasks::task_2537(std::vector<int> &nums, int k, long long cnt)
+{
+    cnt=0;
+    std::unordered_map <int,int> mpp;
+    for (int i = 0, left = 0 ; i < nums.size() ; i++) {
+        k -= mpp[nums[i]]++;
+        while (k <= 0) k += --mpp[nums[left++]];
+        cnt += left;
+    }
+    return cnt;
+}
+
 
