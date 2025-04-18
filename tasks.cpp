@@ -4777,5 +4777,25 @@ int tasks::task_2176(std::vector<int> &nums, int k)
     return pairs;
 }
 
+std::string tasks::task_38(int n)
+{
+    std::string res = "1";
+    for (int i = 1; i < n; i++) {
+        std::string temp = "";
+        int count = 1;
+        for (int j = 1; j < res.size(); j++) {
+            if (res[j] == res[j - 1]) {
+                count++;
+            } else {
+                temp += std::to_string(count) + res[j - 1];
+                count = 1;
+            }
+        }
+        temp += std::to_string(count) + res.back();
+        res = temp;
+    }
+    return res;
+}
+
 
 
