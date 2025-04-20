@@ -4797,5 +4797,17 @@ std::string tasks::task_38(int n)
     return res;
 }
 
+int tasks::task_781(std::vector<int> &answers)
+{
+    int total=0;
+    std::unordered_map <int,int> mpp;
+    for (int i : answers) mpp[i]++;
+
+    for (auto& p : mpp)
+        total += ceil((double)p.second / (p.first + 1)) * (p.first + 1);
+    return total;
+}
+
+
 
 
