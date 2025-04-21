@@ -4808,6 +4808,17 @@ int tasks::task_781(std::vector<int> &answers)
     return total;
 }
 
+int tasks::task_2145(std::vector<int> &differences, int lower, int upper)
+{
+    long sum = 0, maxi = 0, mini = 0;
+    for (int i : differences) {
+        sum += i;
+        maxi = std::max(maxi, sum);
+        mini = std::min(mini, sum);
+    }
+    return std::max(0L, upper - lower - maxi + mini + 1);
+}
+
 
 
 
