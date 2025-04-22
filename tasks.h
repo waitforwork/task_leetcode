@@ -237,6 +237,7 @@ std::unordered_set<int> recoveredValues;
    //2563 повтор
     int task_781(std::vector<int>& answers);                                                                        //381. массив, математика
     int task_2145(std::vector<int>& differences, int lower, int upper);                                             //2145. массив
+    int task_2338(int n, int maxValue);                                                                             //2338. математика
 private:
     std::vector<int> result; //501
         int prev = 0;        //501
